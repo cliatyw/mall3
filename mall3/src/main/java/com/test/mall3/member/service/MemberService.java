@@ -1,5 +1,7 @@
 package com.test.mall3.member.service;
 
+import java.sql.SQLException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class MemberService {
 	@Autowired
 	private MemberDao memberDao;
+	
 	private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
 
-	
-	
-	
-	
+	public void addMember(Member member) {
+		memberDao.insertMember(member);
+	}
 }

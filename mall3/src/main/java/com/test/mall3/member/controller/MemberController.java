@@ -1,5 +1,7 @@
 package com.test.mall3.member.controller;
 
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -17,20 +19,18 @@ import com.test.mall3.member.service.MemberService;
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
-	private MemberDao memberDao;
-	// addMember get
-	// addMember post -> MemberService.addMember() -> MemberDao.insertMember()
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
-	
+	// addMember get
+	// addMember post -> MemberService.addMember() -> MemberDao.insertMember()
 	@RequestMapping(value="/addMember", method=RequestMethod.GET)
 	public String addMember() {
-		return "addMember";
+		return "/member/addMember";
 	}
 	
 	@RequestMapping(value="/addMember", method=RequestMethod.POST)
 	public String addMember(Member member) {
-		memberDao.insertMember(member);
-		return "addMember";
+		memberService.addMember(member);
+		return "/member/getMemberList";
 	}
 }

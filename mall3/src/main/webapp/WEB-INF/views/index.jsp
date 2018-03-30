@@ -6,6 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<a href="${pageContext.request.contextPath}/addMember">회원등록</a>
 	<h1>index</h1>
 </body>
 </html>

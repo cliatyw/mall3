@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Service
 public class MemberService {
@@ -11,11 +13,17 @@ public class MemberService {
 	private MemberDao memberDao;
 	private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
 
+	@RequestMapping(value="/addMember", method=RequestMethod.GET)
+	public String addMember() {
+				
+		return "addMember";
+	}
 	
 	
-	public String getMember() {
-		return null;
-		// TODO Auto-generated method stub
-		
+	@RequestMapping(value="/addMember", method=RequestMethod.POST)
+	public String addMember(Member member) {
+		logger.info(member.getMemberId());
+		memberDao.insertMember(member);
+		return "addMember";
 	}
 }

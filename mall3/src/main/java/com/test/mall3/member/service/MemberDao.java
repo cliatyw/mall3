@@ -10,9 +10,8 @@ import com.test.mall3.IndexController;
 public class MemberDao {
 	private static final Logger logger = LoggerFactory.getLogger(MemberDao.class);
 	
-	public int insertMember(Member member) {
+	public void insertMember(Member member) {
 		logger.info("insertMember");
-		return 0;
 	}
 	
 }

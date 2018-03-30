@@ -10,4 +10,12 @@ public class MemberService {
 	@Autowired
 	private MemberDao memberDao;
 	private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
+
+	
+	
+	public String getMember() {
+		return null;
+		// TODO Auto-generated method stub
+		
+	}
 }

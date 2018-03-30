@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.test.mall3.member.service.Member;
 import com.test.mall3.member.service.MemberDao;
 import com.test.mall3.member.service.MemberService;
 
@@ -24,6 +25,12 @@ public class MemberController {
 	
 	@RequestMapping(value="/addMember", method=RequestMethod.GET)
 	public String addMember() {
+		return "addMember";
+	}
+	
+	@RequestMapping(value="/addMember", method=RequestMethod.POST)
+	public String addMember(Member member) {
+		memberDao.insertMember(member);
 		return "addMember";
 	}
 }

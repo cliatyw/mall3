@@ -13,17 +13,8 @@ public class MemberService {
 	private MemberDao memberDao;
 	private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
 
-	@RequestMapping(value="/addMember", method=RequestMethod.GET)
-	public String addMember() {
-				
-		return "addMember";
-	}
 	
 	
-	@RequestMapping(value="/addMember", method=RequestMethod.POST)
-	public String addMember(Member member) {
-		logger.info(member.getMemberId());
-		memberDao.insertMember(member);
-		return "addMember";
-	}
+	
+	
 }

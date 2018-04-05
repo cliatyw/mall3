@@ -8,9 +8,10 @@ import com.test.mall3.member.service.MemberService;
 
 @Repository
 public class BoardCommentDao {
-
+	
 	private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
 	public String insertBoardComment(BoardComment boardComment) {
+		
 		logger.info(boardComment.getCommentContent());
 		return "insertBoardComment";
 	}

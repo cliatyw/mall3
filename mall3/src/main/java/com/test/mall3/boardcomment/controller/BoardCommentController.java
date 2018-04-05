@@ -11,6 +11,7 @@ import com.test.mall3.boardcomment.service.BoardCommentService;
 @Controller
 public class BoardCommentController {
 
+	
 	@Autowired
 	private BoardCommentService boardCommentService;
 	@RequestMapping(value="/getBoardCommentList", method=RequestMethod.GET)
@@ -23,5 +24,4 @@ public class BoardCommentController {
 		boardCommentService.addBoardComment(boardComment);
 		return "/boardcomment/getBoardCommentList";
 	}
-	
 }

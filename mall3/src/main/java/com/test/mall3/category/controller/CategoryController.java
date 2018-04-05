@@ -30,10 +30,10 @@ public class CategoryController {
 		return "/category/addCategory";
 	}
 	
-	@RequestMapping(value="/addCategory", method=RequestMethod.POST)
+	@RequestMapping(value="/getCategoryList", method=RequestMethod.POST)
 	public String getCategoryList(Model model) {
 		List<Category> list = categoryservice.getCategoryList();
 		model.addAttribute("list",list);
-		return "/category/addCategory";
+		return "/category/getCategoryList";
 	}
 } 

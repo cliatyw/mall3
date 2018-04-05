@@ -22,4 +22,29 @@
 	</bean>
 	
 	<context:component-scan base-package="com.test.mall3" />
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/mall3?useUnicode=true&amp;characterEncoding=utf8"/>
+		<property name="username" value="root"/>
+		<property name="password" value="0000"/>
+	</bean>
+
+	<!-- mybatis 세션생성을 위한 팩토리 생성 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- mybatis 세션생성시 사용할 dataSource주입 -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- mybatis 세션생성후 쿼리를 실행시킬때 사용할 쿼리위치(메퍼)설정 -->
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:com/test/mall3/member/service/MemberMapper.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- mybatis를 사용하여 db에접속하여 쿼리를 보내는 주체인 SqlSessionTemplate빈 생성 -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+
 </beans>

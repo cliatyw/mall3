@@ -13,9 +13,10 @@ public class BoardService {
 	private BoardDao boardDao;
 	private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
 	
-	public void addBoard(Board board) {
-		boardDao.insertBoard(board);
-		logger.info(boardDao.insertBoard(board)+"<--dao호출성공");
+	public int addBoard(Board board) {
+		int row = boardDao.insertBoard(board);	
+		logger.debug("%s","BoardDao.insertBoard()ȣ��");
+		return row;
 	}
 	
 }

@@ -14,10 +14,11 @@ public class BoardDao {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	final String NS = "com.test.mall3.board.service.BoardMapper.";
 
-	public String insertBoard(Board board) {
-		logger.info(board.getBoardTitle()+"<--title");
-		logger.info(board.getBoardContent()+"<--content");
-		return "insertBoard";
+	public int insertBoard(Board board) {
+		logger.info("insertBoard");
+		int row = sqlSession.insert(NS+"insertBoard", board);
+		return row;
 	}
 }

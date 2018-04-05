@@ -16,7 +16,7 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
-	
+		
 	@RequestMapping(value="/getBoardList", method=RequestMethod.GET)
 	public String getBoardList() {
 		return "/board/getBoardList";

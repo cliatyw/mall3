@@ -2,6 +2,7 @@ package com.test.mall3.board.service;
 
 public class Board {
 	private int boardNo;
+	private String memberId;
 	private String boardTitle;
 	private String boardContent;
 	private String boardDate;
@@ -28,6 +29,12 @@ public class Board {
 	}
 	public void setBoardDate(String boardDate) {
 		this.boardDate = boardDate;
+	}
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	@Override
 	public String toString() {

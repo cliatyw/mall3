@@ -4,7 +4,19 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="com.test.mall3.board.service.BoardMapper">
-
+	<insert id="insertBoard" parameterType="com.test.mall3.board.service.Board">
+		INSERT INTO board(					
+			member_id
+			,board_title
+			,board_content
+			,board_date
+		) VALUES (
+			"guest",
+			#{boardTitle},
+			#{boardContent},
+			now()
+		)
+	</insert>
 </mapper>
 
 

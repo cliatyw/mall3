@@ -1,9 +1,6 @@
 package com.test.mall3.member.service;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -11,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.test.mall3.IndexController;
+import com.test.mall3.member.service.Member;
 
 @Repository
 public class MemberDao {
@@ -21,6 +18,10 @@ public class MemberDao {
 	private SqlSessionTemplate sqlSession;
 	
 	final String NS = "com.test.mall3.member.service.MemberMapper.";
+	
+	public List<Member> selectMemberList(){
+		return sqlSession.selectList(NS+"selectMember");
+	}
 	/*
 	 * Member를 매개변수로 받아 삽입하는 매서드
 	 */

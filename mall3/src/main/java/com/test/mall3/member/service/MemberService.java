@@ -1,13 +1,11 @@
 package com.test.mall3.member.service;
 
-import java.sql.SQLException;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Service
 public class MemberService {
@@ -16,8 +14,12 @@ public class MemberService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
 	
+	public List<Member> getMemberList() {
+		return memberDao.selectMemberList();
+	}
+	
 	public int addMember(Member member) {
-		logger.debug("%s", "member");
+		logger.debug("member");
 		int row = memberDao.insertMember(member);
 		return row;
 	}

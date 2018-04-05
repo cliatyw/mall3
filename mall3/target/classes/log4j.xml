@@ -14,6 +14,9 @@
 	<logger name="com.test.mall3.member.service">
 		<level value="debug"></level>
 	</logger>
+	<logger name="com.test.mall3.board.service">
+		<level value="debug"></level>
+	</logger>
 	
 	<logger name="com.test.mall3">
 		<level value="info" />

@@ -31,6 +31,6 @@ public class MemberController {
 	@RequestMapping(value="/addMember", method=RequestMethod.POST)
 	public String addMember(Member member) {
 		memberService.addMember(member);
-		return "/member/getMemberList";
+		return "redirect:/";
 	}
 }

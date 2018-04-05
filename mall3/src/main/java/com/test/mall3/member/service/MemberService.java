@@ -15,8 +15,11 @@ public class MemberService {
 	private MemberDao memberDao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
-
-	public void addMember(Member member) {
-		memberDao.insertMember(member);
+	
+	public int addMember(Member member) {
+		logger.debug("%s", "member");
+		int row = memberDao.insertMember(member);
+		return row;
 	}
+
 }

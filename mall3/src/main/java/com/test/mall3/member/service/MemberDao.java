@@ -19,11 +19,14 @@ public class MemberDao {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
+	final String NS = "com.test.mall3.member.service.MemberMapper.";
 	/*
 	 * Member를 매개변수로 받아 삽입하는 매서드
 	 */
-	public void insertMember(Member member) {
+	public int insertMember(Member member) {
 		logger.info("insertMember");
-		
+		int row = sqlSession.insert(NS + "insertMember", member);
+		return row;
 	}
 }

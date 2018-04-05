@@ -12,7 +12,7 @@
 	
 	<!-- Application Loggers -->
 	<logger name="com.test.mall3.member.service">
-		<level value="debug"></level>
+		<level value="debug" />
 	</logger>
 	<logger name="com.test.mall3.board.service">
 		<level value="debug"></level>

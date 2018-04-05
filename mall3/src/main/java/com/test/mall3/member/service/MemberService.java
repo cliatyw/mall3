@@ -23,5 +23,4 @@ public class MemberService {
 		int row = memberDao.insertMember(member);
 		return row;
 	}
-
 }

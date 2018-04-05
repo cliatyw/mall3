@@ -16,7 +16,7 @@ import com.test.mall3.category.service.CategoryService;
 @Controller
 public class CategoryController {
 	@Autowired
-	private CategoryService categoryservice;
+	private CategoryService categoryService;
 	private static final Logger logger = LoggerFactory.getLogger(CategoryController.class);
 	
 	@RequestMapping(value="/addCategory", method=RequestMethod.GET)
@@ -26,13 +26,13 @@ public class CategoryController {
 
 	@RequestMapping(value="/addCategory", method=RequestMethod.POST)
 	public String addCategory(Category category) {
-		categoryservice.addCategory(category);
+		categoryService.addCategory(category);
 		return "redirect:/getCategoryList";
 	}
 	
 	@RequestMapping(value="/getCategoryList", method=RequestMethod.GET)
 	public String getCategoryList(Model model) {
-		List<Category> list = categoryservice.getCategoryList();
+		List<Category> list = categoryService.getCategoryList();
 		model.addAttribute("list",list);
 		return "/category/getCategoryList";
 	}

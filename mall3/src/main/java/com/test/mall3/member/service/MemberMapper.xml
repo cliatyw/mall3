@@ -12,7 +12,13 @@
 		FROM member
 	</select>
 	<insert id="insertMember" parameterType="com.test.mall3.member.service.Member">
-		INSERT INTO member(member_id, member_pw) VALUES (#{memberId}, #{memberPw})
+		INSERT INTO member(
+			member_id
+			,member_pw
+		) VALUES (
+			#{memberId}
+			,#{memberPw}
+		)
 	</insert>
 </mapper>
 

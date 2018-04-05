@@ -11,15 +11,16 @@ import com.test.mall3.member.service.MemberService;
 @Service
 public class CategoryService {
 	@Autowired
-	private CategoryDao categorydao;
+	private CategoryDao categoryDao;
+	
 	private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
 
 	public List<Category> getCategoryList() {
-		return categorydao.selectCategoryList();
+		return categoryDao.selectCategoryList();
 	}
 	
 	public int addCategory(Category category) {
-		int row = categorydao.insertCategory(category);
+		int row = categoryDao.insertCategory(category);
 		return row;
 	}
 }

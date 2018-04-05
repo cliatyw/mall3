@@ -18,12 +18,17 @@ public class MemberDao {
 	private SqlSessionTemplate sqlSession;
 	
 	final String NS = "com.test.mall3.member.service.MemberMapper.";
-	
+	/*
+	 * member전체 목록을 받아 list로 리턴받는 메서드
+	 * return list
+	 */
 	public List<Member> selectMemberList(){
 		return sqlSession.selectList(NS+"selectMember");
 	}
 	/*
-	 * Member를 매개변수로 받아 삽입하는 매서드
+	 * Member를 매개변수로 받아 삽입하는 메서드
+	 * param member
+	 * return row
 	 */
 	public int insertMember(Member member) {
 		logger.info("insertMember");

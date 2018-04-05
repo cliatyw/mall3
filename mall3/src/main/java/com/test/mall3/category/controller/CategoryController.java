@@ -27,10 +27,10 @@ public class CategoryController {
 	@RequestMapping(value="/addCategory", method=RequestMethod.POST)
 	public String addCategory(Category category) {
 		categoryservice.addCategory(category);
-		return "/category/addCategory";
+		return "redirect:/getCategoryList";
 	}
 	
-	@RequestMapping(value="/getCategoryList", method=RequestMethod.POST)
+	@RequestMapping(value="/getCategoryList", method=RequestMethod.GET)
 	public String getCategoryList(Model model) {
 		List<Category> list = categoryservice.getCategoryList();
 		model.addAttribute("list",list);

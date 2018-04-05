@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="${pageContext.request.contextPath}/getCategoryList" method = "post">
+	<form action="${pageContext.request.contextPath}/addCategory" method = "post">
 		<table>
 			<tr>
 				<td>카테고리 등록</td>

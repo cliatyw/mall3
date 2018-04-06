@@ -22,23 +22,6 @@ public class CategoryController {
 	private CategoryService categoryservice;
 	private static final Logger logger = LoggerFactory.getLogger(CategoryController.class);
 	
-	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public String loging() {
-		return "login";
-	}
-	
-	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String loging(Model model, Category category, HttpSession session) {
-		Category returnCategory = categoryservice.getCategoryById(category);
-		if(returnCategory == null) {
-			model.addAttribute("requestCategory", category);
-			return "login";
-		}
-		session.setAttribute("loginCategory", returnCategory);
-		return "redirect:/";
-	}
-	
-	
 	@RequestMapping(value="/addCategory", method=RequestMethod.GET)
 	public String addCategory() {
 		return "/category/addCategory";

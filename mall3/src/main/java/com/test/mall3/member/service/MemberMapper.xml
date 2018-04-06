@@ -4,12 +4,26 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.test.mall3.member.service.MemberMapper">
-	<select id="selectMember" resultType="com.test.mall3.member.service.Member">
+	<select id="selectMemberById" parameterType="com.test.mall3.member.service.Member" resultType="com.test.mall3.member.service.Member">
+		SELECT 
+			member_no AS memberNo
+			,member_id AS memberId
+			,member_pw AS memberPw
+		FROM member
+		WHERE member_id = #{memberId}
+		AND member_pw = #{memberPw}	
+	</select>
+	<select id="selectMemberList" parameterType="java.util.Map" resultType="com.test.mall3.member.service.Member">
 		SELECT
 			member_no AS memberNo
 			,member_id AS memberId
 			,member_pw AS memberPw
 		FROM member
+		ORDER BY member_no DESC
+		LIMIT #{beginRow}, #{pagePerRow}
+	</select>
+	<select id="totalCountMember" resultType="Integer">
+		SELECT COUNT(*) FROM member
 	</select>
 	<insert id="insertMember" parameterType="com.test.mall3.member.service.Member">
 		INSERT INTO member(

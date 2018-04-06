@@ -1,6 +1,8 @@
 package com.test.mall3.member.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,8 +16,35 @@ public class MemberService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
 	
-	public List<Member> getMemberList() {
-		return memberDao.selectMemberList();
+	public Member selectMemberById(Member member){
+		return memberDao.selectMemberById(member);
+	}
+	
+	public Map<String, Object> getMemberList(int currentPage, int pagePerRow) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		/*
+		 * currentPage 와 pagePerRow 활용하여 beginRow를 구한다
+		 */
+		int beginRow = (currentPage-1)*pagePerRow;
+		map.put("beginRow", beginRow);
+		map.put("pagePerRow", pagePerRow);
+		List<Member> list = memberDao.selectMemberList(map);
+		/*
+		 * total 와 pagePerRow 활용하여 lastPage를 구한다
+		 */
+		int total = memberDao.totalCountMember();
+		int lastPage = 0;
+		if(total%pagePerRow == 0) {
+			lastPage = total/pagePerRow;
+		}else {
+			lastPage = total/pagePerRow+1;
+		}
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		returnMap.put("list", list);
+		returnMap.put("lastPage", lastPage);
+		
+		return returnMap;
 	}
 	
 	public int addMember(Member member) {

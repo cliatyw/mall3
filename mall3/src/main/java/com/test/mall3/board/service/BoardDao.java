@@ -1,6 +1,7 @@
 package com.test.mall3.board.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -18,12 +19,17 @@ public class BoardDao {
 	private SqlSessionTemplate sqlSession;
 	final String NS = "com.test.mall3.board.service.BoardMapper.";
 
-	public List<Board> selectBoardList(){
-		return sqlSession.selectList(NS+"selectBoardList");
+	public List<Board> selectBoardList(Map<String, Object> map){
+		return sqlSession.selectList(NS+"selectBoardList", map);
 	}
+	
 	public int insertBoard(Board board) {
 		logger.info("insertBoard");
 		int row = sqlSession.insert(NS+"insertBoard", board);
 		return row;
+	}
+	
+	public int totalCountBoard() {
+		return sqlSession.selectOne(NS+"totalCountBoard");
 	}
 }

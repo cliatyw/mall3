@@ -7,11 +7,14 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
 	<script>
-		$(document).ready(function(){
+		$(document).ready(function(){			
 			$('.update').click(function(){
 				$('#title').removeAttr("readonly");
+				$('#title').attr('style','"border:1"');
 				$('#content').removeAttr("readonly");
+				$('#content').attr('style','"border:1"');
 				$("p").after('<input type="submit" value="수정확인">');
+				$('.update').hide();
 			});
 		});
 	</script>
@@ -60,7 +63,6 @@
 			      </td>
 			</tr>
 		</table>
-		<input type="submit" value="수정확인">
 		<p></p>
 	</form>	
 	<form action="${pageContext.request.contextPath}/getBoardCommentList" method="post">

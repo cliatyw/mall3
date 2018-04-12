@@ -44,4 +44,9 @@ public class BoardService {
 		return row;
 	}
 	
+	/*매개변수 boardNo를 받아 게시판글 삭제*/
+	public int deleteBoard(int boardNo) {
+		int row = boardDao.deleteBoard(boardNo);
+		return row;
+	}
 }

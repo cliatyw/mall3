@@ -7,6 +7,7 @@
 	<title>getBoardList.jsp</title>
 </head>
 <body>
+	<center>
 	<h1>게시판리스트</h1>
 		<form action="${pageContext.request.contextPath}/getBoardList?pagePerRow=pagePerRow">
 			<select name="pagePerRow" id="pagePerRow">
@@ -22,20 +23,23 @@
 				<tr>
 					<th>순서</th>
 					<th>제목</th>
+					<th>수정</th>
 				</tr>
 			</thead>	
 			<tbody>
 				<c:forEach var="list" items="${list}">
 				<tr>
 					<td>${list.boardNo}</td>
-					<td><a href="${pageContext.request.contextPath}/getBoardCommentList">${list.boardTitle}</a></td>
+					<td><a href="${pageContext.request.contextPath}/getBoardCommentList?boardNo=${list.boardNo}&memberId=${list.memberId}&boardTitle=${list.boardTitle}&boardContent=${list.boardContent}&boardDate=${list.boardDate}">${list.boardTitle}</a></td>
+					<td>수정</td>
 				</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 		<c:forEach var="start" begin="1" end="${lastPage}">
 			<a href="${pageContext.request.contextPath}/getBoardList?currentPage=${start}&pagePerRow=${pagePerRow}">[${start}]</a>
-		</c:forEach>
-		
+		</c:forEach><br>
+		<input type="button" value="메인" onclick="window.location.href='${pageContext.request.contextPath}/index'">
+		</center>
 </body>
 </html>

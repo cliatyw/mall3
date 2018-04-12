@@ -42,6 +42,12 @@ public class BoardController {
 	@RequestMapping(value="/addBoard", method=RequestMethod.POST)
 	public String addBoard(Board board) {
 		boardService.addBoard(board);
-		return "redirect:/getBoardList?pagePerRow=10";
+		return "redirect:/getBoardList?pagePerRow=5";
+	}
+	
+	@RequestMapping(value="/deleteBoard", method=RequestMethod.GET)
+	public String deleteBoard(@RequestParam(value="deleteBoardNo") int deleteBoardNo) {
+		boardService.deleteBoard(deleteBoardNo);
+		return "redirect:/getBoardList?pagePerRow=5";
 	}
 }

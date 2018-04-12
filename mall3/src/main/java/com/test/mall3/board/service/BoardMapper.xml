@@ -33,6 +33,9 @@
 			now()
 		)
 	</insert>
+	<delete id="deleteBoard" parameterType="Integer">
+		DELETE FROM board WHERE board_no = #{boardNo}
+	</delete>
 </mapper>
 
 

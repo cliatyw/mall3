@@ -7,10 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<center>
+	<h1>게시글 작성</h1>
 	<form method="post" action="${pageContext.request.contextPath}/addBoard">
-		제목 :<input type="text" name="boardTitle">
-		내용:<input type="text" name="boardContent">
+		제목 :<input type="text" name="boardTitle"><br>
+		내용:<input type="text" name="boardContent"><br>
 		<input type="submit" value="등록">
 	</form>
+	</center>
 </body>
 </html>

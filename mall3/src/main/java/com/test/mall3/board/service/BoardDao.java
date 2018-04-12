@@ -32,4 +32,9 @@ public class BoardDao {
 	public int totalCountBoard() {
 		return sqlSession.selectOne(NS+"totalCountBoard");
 	}
+	
+	public int deleteBoard(int boardNo) {
+		int row = sqlSession.delete(NS+"deleteBoard", boardNo);
+		return row;
+	}
 }

@@ -13,11 +13,7 @@ public class CategoryDao {
 	private SqlSessionTemplate sqlSession;
 	
 	final String NS = "com.test.mall3.category.service.CategoryMapper.";
-	
-	public Category selectCategoryById(Category category) {
-		return sqlSession.selectOne(NS+"selectCategoryById");
-	}
-	
+		
 	public int totalCountCategory() {
 		return sqlSession.selectOne(NS+"totalCountCategory");
 		
@@ -30,5 +26,19 @@ public class CategoryDao {
 	public int insertCategory(Category category) {
 		int row = sqlSession.insert(NS + "insertCategory", category);
 		return row;
+	}
+
+	public int deleteCategory(Category category) {
+		int row = sqlSession.delete(NS + "deleteCategory", category);
+		return row;
+	}
+	
+	public int updateCategory(Category category) {
+		int row = sqlSession.update(NS + "updateCategory", category);
+		return row;
+	}
+	
+	public Category selectCategoryOne(Category category) {
+		return sqlSession.selectOne(NS + "selectCategoryOne", category);
 	}
 }

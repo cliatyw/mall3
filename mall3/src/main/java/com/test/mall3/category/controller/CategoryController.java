@@ -30,18 +30,38 @@ public class CategoryController {
 	@RequestMapping(value="/addCategory", method=RequestMethod.POST)
 	public String addCategory(Category category) {
 		categoryservice.addCategory(category);
-		return "redirect:/getCategoryList";
+		return "redirect:/getCategoryList?pagePerRow=10";
 	}
 	
 	@RequestMapping(value="/getCategoryList", method=RequestMethod.GET)
 	public String getCategoryList(Model model
 									,@RequestParam(value="currentPage", defaultValue="1") int currentPage
-									,@RequestParam(value="pagePerRow", required=true) int pagePerRow) {
+									,@RequestParam(value="pagePerRow", defaultValue="10", required=true) int pagePerRow) {
 		
 		Map<String, Object> map = categoryservice.getCategoryList(currentPage,pagePerRow);
 		model.addAttribute("list", map.get("list"));
-		model.addAttribute("total",map.get("lastPage"));
+		model.addAttribute("lastPage",map.get("lastPage"));
+		model.addAttribute("currentPage",map.get("currentPage"));
 		model.addAttribute("pagePerRow",pagePerRow);
 		return "/category/getCategoryList";
 	}
+	
+	@RequestMapping(value="/deleteCategory", method=RequestMethod.GET )
+	public String deleteCategory(Category category) {
+		categoryservice.deleteCategory(category);
+		return "redirect:/getCategoryList";
+	}
+	
+	@RequestMapping(value="/updateCategory", method=RequestMethod.GET )
+	public String updateCategory(Model model, Category category) {
+		model.addAttribute("category", categoryservice.selectCategoryOne(category));
+		return "category/updateCategory";
+	}
+	
+	@RequestMapping(value="/updateCategory", method=RequestMethod.POST )
+	public String updateCategory(Category category) {
+		categoryservice.updateCategory(category);
+		return "redirect:/getCategoryList";
+	}
+
 } 

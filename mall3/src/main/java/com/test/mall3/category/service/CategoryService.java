@@ -16,10 +16,6 @@ public class CategoryService {
 	private CategoryDao categorydao;
 	private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
 
-	public Category getCategoryById(Category category) {
-		return categorydao.selectCategoryById(category);
-		
-	}
 	public Map<String, Object> getCategoryList(int currentPage, int pagePerRow) {
 		//1
 		Map<String, Integer> map = new HashMap<String, Integer>();
@@ -47,5 +43,19 @@ public class CategoryService {
 	public int addCategory(Category category) {
 		int row = categorydao.insertCategory(category);
 		return row;
+	}
+
+	public int deleteCategory(Category category) {
+		int row = categorydao.deleteCategory(category);
+		return row;
+	}
+	
+	public int updateCategory(Category category) {
+		int row = categorydao.updateCategory(category);
+		return row;
+	}
+	
+	public Category selectCategoryOne(Category category) {
+		return categorydao.selectCategoryOne(category);
 	}
 }

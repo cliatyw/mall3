@@ -5,33 +5,36 @@
 
 <mapper namespace="com.test.mall3.category.service.CategoryMapper">
 
-	<select id="selectCategoryById" parameterType="String" resultType="com.test.mall3.category.service.Category">
-      SELECT 
-      category_no AS categoryNo
-			,category_name AS categoryName
-      FROM category
-      WHERE category_no = #{categoryNo}
-      AND category_name = #{categoryName}   
-   </select>
-                                                                                             
+	<insert id="deleteCategory" parameterType="com.test.mall3.category.service.Category">
+		DELETE FROM category WHERE category_no = (#{categoryNo})
+	</insert>
 
-	<select id="selectCategoryList" parameterType="java.util.Map" resultType="com.test.mall3.category.service.Category">
+	<select id="selectCategoryList" 
+			parameterType="java.util.Map" 
+			resultType="com.test.mall3.category.service.Category">
 		SELECT
 			category_no AS categoryNo
 			,category_name AS categoryName
 		FROM category 
-		ODER BY category_no DESC
-		LIMIT #{beginRow},#{pagePerRow}
+		ORDER BY category_no DESC
+		LIMIT #{beginRow}, #{pagePerRow}
 	</select>
 	
 	<select id = "totalCountCategory" resultType = "Integer">
 		SELECT COUNT(*) FROM category
-		
 	</select>
 			
-
 	<insert id="insertCategory" parameterType="com.test.mall3.category.service.Category">
 		INSERT INTO category(category_name) VALUES (#{categoryName})
 	</insert>
+	
+	<update id="updateCategory" parameterType="com.test.mall3.category.service.Category">
+		UPDATE category SET category_name=#{categoryName} WHERE category_no = (#{categoryNo})
+	</update>
+	
+	<select id="selectCategoryOne" parameterType="com.test.mall3.category.service.Category" resultType="com.test.mall3.category.service.Category">
+		SELECT category_no AS categoryNo , category_name AS categoryName FROM category WHERE category_no=(#{categoryNo})
+	</select>
+
 </mapper>
 

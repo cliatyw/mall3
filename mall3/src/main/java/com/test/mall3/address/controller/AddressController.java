@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.test.mall3.address.service.Address;
 import com.test.mall3.address.service.AddressService;
 
 @Controller
@@ -19,13 +20,28 @@ public class AddressController {
 	private AddressService addressService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(AddressController.class);
+	/*
+	 * 주소 추가
+	 */
+	@RequestMapping(value="/addAddress", method=RequestMethod.GET)
+	public String getAddressList() {
+		return "/address/addAddress";
+	}
 	
+	@RequestMapping(value="/addAddress", method=RequestMethod.POST)
+	public String getAddressList(Address address) {
+		addressService.addAddress(address);
+		return "/address/getAddressList?memberNo="+address.getMemberNo();
+	}
+	/*
+	 * memberNo를 받아 서비스를 호출한다.
+	 * 페이징을 위한 여러 변수들
+	 */
 	@RequestMapping(value="/getAddressList", method=RequestMethod.GET)
-	public String getMemberList(Model model
+	public String getAddressList(Model model
 			, @RequestParam(value="memberNo") int memberNo
 			, @RequestParam(value="currentPage", defaultValue="1") int currentPage
 			, @RequestParam(value="pagePerRow", defaultValue="10", required=true) int pagePerRow) {
-		logger.info("컨트롤러");
 		Map<String, Object> map = addressService.getAddressList(currentPage, pagePerRow, memberNo);
 		model.addAttribute("list", map.get("list"));
 		model.addAttribute("lastPage", map.get("lastPage"));

@@ -59,7 +59,6 @@ public class MemberDao {
 	 * return row
 	 */
 	public int insertMember(Member member) {
-		logger.info("insertMember");
 		int row = sqlSession.insert(NS+"insertMember", member);
 		return row;
 	}

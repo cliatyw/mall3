@@ -17,6 +17,9 @@
 				<th>no</th>
 				<th>id</th>
 				<th>pw</th>
+				<th>수정</th>
+				<th>삭제</th>
+				<th>주소 목록</th>
 			</tr>
 		</thead>
 		<tbody>

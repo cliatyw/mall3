@@ -16,6 +16,13 @@ public class AddressService {
 	private AddressDao addressDao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(AddressService.class);
+	/*
+	 * address를 매개변수로 받아 dao에서 insert를 하여 row로 리턴한다.
+	 */
+	public int addAddress(Address address) {
+		int row = addressDao.insertAddress(address);
+		return row;
+	}
 
 	public Map<String, Object> getAddressList(int currentPage, int pagePerRow, int memberNo) {
 		
@@ -28,7 +35,6 @@ public class AddressService {
 		map.put("beginRow", beginRow);
 		map.put("pagePerRow", pagePerRow);
 		map.put("memberNo", memberNo);
-		logger.info("서비스");
 		List<Address> list = addressDao.selectAddressList(map);
 		
 		/*

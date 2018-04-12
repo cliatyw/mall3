@@ -20,12 +20,22 @@ public class AddressDao {
 	private static final Logger logger = LoggerFactory.getLogger(AddressDao.class);
 	
 	final String NS = "com.test.mall3.address.service.AddressMapper.";
-	
+	/*
+	 * address를 매개변수로 받아 삽입하고 row로 리턴받는 매서드
+	 */
+	public int insertAddress(Address address) {
+		int row = sqlSession.insert(NS+"insertMember", address);
+		return row;
+	}
+	/*
+	 * map을 매개변수로 받아 address 리스트를 리턴받는 매서드
+	 */
 	public List<Address> selectAddressList(Map<String, Integer> map){
-		logger.info("DAO");
 		return sqlSession.selectList(NS+"selectAddressList", map);
 	}
-
+	/*
+	 * memberNo를 매개변수로 받아 전체 주소수를 세고 리턴하는 매서드
+	 */
 	public int totalCountAddress(int memberNo) {
 		return sqlSession.selectOne(NS+"totalCountAddress", memberNo);
 	}

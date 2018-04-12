@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.mall3.item.service.ItemMapper">
+
+
+	<select id="selectItemList" 
+			parameterType="java.util.Map" 
+			resultType="com.test.mall3.item.service.Item">
+		SELECT
+			item_no AS itemNo
+			,category_no AS categoryNo
+			,item_name AS itemName
+			,item_price AS itemPrice
+		FROM item WHERE category_no = #{categoryNo}
+		ORDER BY category_no DESC
+		LIMIT #{beginRow}, #{pagePerRow}
+	</select>
+	
+	<select id = "totalCountItem" resultType = "Integer">
+		SELECT COUNT(*) FROM item
+	</select>
+			
+	
+</mapper>
+

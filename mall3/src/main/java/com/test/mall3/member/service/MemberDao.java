@@ -20,6 +20,19 @@ public class MemberDao {
 	
 	final String NS = "com.test.mall3.member.service.MemberMapper.";
 	/*
+	 * 매개변수를 member로 받아 수정하는 매서드
+	 */
+	public int updateMember(Member member) {
+		int row = sqlSession.update(NS+"updateMember", member);
+		return row;
+	}
+	/*
+	 * 매개변수를 member로 받아 한개의 member목록을 선택하여 리턴하는 매서드
+	 */
+	public Member selectMemberOne(Member member) {
+		return sqlSession.selectOne(NS+"selectMemberOne", member);
+	}
+	/*
 	 * member를 매개변수로 받아 아이디와 비번이 일치하는 member를 리턴받는 매서드
 	 * return member
 	 */
@@ -48,6 +61,13 @@ public class MemberDao {
 	public int insertMember(Member member) {
 		logger.info("insertMember");
 		int row = sqlSession.insert(NS+"insertMember", member);
+		return row;
+	}
+	/*
+	 * member를 매개변수로 받아 삭젝하는 메서드
+	 */
+	public int deleteMember(Member member) {
+		int row = sqlSession.delete(NS+"deleteMember", member);
 		return row;
 	}
 }

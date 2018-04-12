@@ -23,7 +23,32 @@ public class MemberController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	/*
-	 * 로그아웃 매핑
+	 * delete 매핑
+	 */
+	@RequestMapping(value= "/deleteMember", method=RequestMethod.GET)
+	public String deleteMember(Member member) {
+		memberService.deleteMember(member);
+		return "redirect:/getMemberList";
+	}
+	/*
+	 * update 매핑
+	 * get방식은 한개의 맴버를 받아 model에 셋팅
+	 * post방식은 맴버를 수정하고 리스트로 돌아감
+	 */
+	@RequestMapping(value= "/updateMember", method=RequestMethod.POST)
+	public String selectMemberOne(Member member) {
+		memberService.updateMember(member);
+		return "redirect:/getMemberList";
+	}
+	
+	@RequestMapping(value= "/updateMember", method=RequestMethod.GET)
+	public String updateMember(Model model, Member member) {
+		model.addAttribute("member", memberService.selectMemberOne(member));
+		return "/member/updateMember";
+	}
+	/*
+	 * 로그인 : 로그인 화면으로 가고 성공할시 session에 저장한 후 index로 리다이렉트
+	 * 로그아웃 : 세션 종료 하고 index로 리다이렉트
 	 */
 	@RequestMapping(value= "/logout", method=RequestMethod.GET)
 	public String logout(HttpSession session) {
@@ -50,8 +75,10 @@ public class MemberController {
 		session.setAttribute("loginMember", member);
 		return "redirect:/index";
 	}
-	// addMember get
-	// addMember post -> MemberService.addMember() -> MemberDao.insertMember()
+	/*
+	 * get 방식은 바로 jsp로
+	 * post 방식은 service에서 addMember 호출하고 Dao에서 insertMember호출
+	 */
 	@RequestMapping(value="/addMember", method=RequestMethod.GET)
 	public String addMember() {
 		return "/member/addMember";

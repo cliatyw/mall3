@@ -1,12 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE>
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>getMemberList.jsp</title>
-</head>
-<body>
+<!DOCTYPE html>
+<jsp:include page="../top.jsp"></jsp:include>
 	<h1>회원 리스트 </h1>
 	<form action="${pageContext.request.contextPath}/getMemberList" method="get">
 		<select name="pagePerRow">
@@ -30,6 +25,9 @@
 					<td>${member.memberNo}</td>
 					<td>${member.memberId}</td>
 					<td>${member.memberPw}</td>
+					<td><a href="${pageContext.request.contextPath}/updateMember?memberNo=${member.memberNo}">수정</a></td>
+					<td><a href="${pageContext.request.contextPath}/deleteMember?memberNo=${member.memberNo}">삭제</a></td>
+					<td><a href="${pageContext.request.contextPath}/getAddressList?memberNo=${member.memberNo}">주소 목록</a>
 				</tr>
 			</c:forEach>
 		</tbody>

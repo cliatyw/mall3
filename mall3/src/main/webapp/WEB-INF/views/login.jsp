@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE>
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
-</head>
-<body>
+<!DOCTYPE html>
+<jsp:include page="top.jsp"></jsp:include>
 	<form action="${pageContext.request.contextPath}/login" method = "post">
 		<table>
 			<tr>
@@ -19,5 +14,6 @@
 		</table>
 		<button type="submit">로그인버튼</button>
 	</form>
+	<button type="button" onclick="location.href='${pageContext.request.contextPath}/addMember'">회원 가입</button>
 </body>
 </html>

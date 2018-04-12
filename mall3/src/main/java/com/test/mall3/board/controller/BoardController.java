@@ -25,7 +25,7 @@ public class BoardController {
 	@RequestMapping(value="/getBoardList", method=RequestMethod.GET)
 	public String getBoardList(Model model
 								,@RequestParam(value="currentPage",defaultValue="1") int currentPage
-								,@RequestParam(value="pagePerRow",required=true) int pagePerRow) {
+								,@RequestParam(value="pagePerRow",defaultValue="5") int pagePerRow) {
 		Map<String, Object> map = boardService.getBoardList(currentPage,pagePerRow);
 		model.addAttribute("list",map.get("list"));
 		model.addAttribute("lastPage",map.get("lastPage"));
@@ -42,18 +42,18 @@ public class BoardController {
 	@RequestMapping(value="/addBoard", method=RequestMethod.POST)
 	public String addBoard(Board board) {
 		boardService.addBoard(board);
-		return "redirect:/getBoardList?pagePerRow=5";
+		return "redirect:/getBoardList";
 	}
 	
 	@RequestMapping(value="/deleteBoard", method=RequestMethod.GET)
-	public String deleteBoard(@RequestParam(value="deleteBoardNo") int deleteBoardNo) {
+	public String deleteBoard(@RequestParam(value="deleteBoardNo",defaultValue="5") int deleteBoardNo) {
 		boardService.deleteBoard(deleteBoardNo);
-		return "redirect:/getBoardList?pagePerRow=5";
+		return "redirect:/getBoardList";
 	}
 	
 	@RequestMapping(value="/updateBoardList", method=RequestMethod.POST)
 	public String updateBoardList(Board board) {
 		boardService.updateBoard(board);
-		return "redirect:/getBoardCommentList";
+		return "redirect:/getBoardList";
 	}
 }

@@ -23,7 +23,6 @@
 				<tr>
 					<th>순서</th>
 					<th>제목</th>
-					<th>수정</th>
 				</tr>
 			</thead>	
 			<tbody>
@@ -31,7 +30,6 @@
 				<tr>
 					<td>${list.boardNo}</td>
 					<td><a href="${pageContext.request.contextPath}/getBoardCommentList?boardNo=${list.boardNo}&memberId=${list.memberId}&boardTitle=${list.boardTitle}&boardContent=${list.boardContent}&boardDate=${list.boardDate}">${list.boardTitle}</a></td>
-					<td>수정</td>
 				</tr>
 				</c:forEach>
 			</tbody>

@@ -49,4 +49,10 @@ public class BoardService {
 		int row = boardDao.deleteBoard(boardNo);
 		return row;
 	}
+	
+	/*boardTitle,boardContent 게시판 수정*/
+	public int updateBoard(Board board) {
+		int row = boardDao.updateBoard(board);
+		return row;
+	}
 }

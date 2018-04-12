@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.test.mall3.board.service.Board;
 import com.test.mall3.boardcomment.service.BoardComment;
 import com.test.mall3.boardcomment.service.BoardCommentService;
 

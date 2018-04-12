@@ -37,4 +37,9 @@ public class BoardDao {
 		int row = sqlSession.delete(NS+"deleteBoard", boardNo);
 		return row;
 	}
+	
+	public int updateBoard(Board board) {
+		int row = sqlSession.update(NS+"updateBoard", board);
+		return row;
+	}
 }

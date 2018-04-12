@@ -50,4 +50,10 @@ public class BoardController {
 		boardService.deleteBoard(deleteBoardNo);
 		return "redirect:/getBoardList?pagePerRow=5";
 	}
+	
+	@RequestMapping(value="/updateBoardList", method=RequestMethod.POST)
+	public String updateBoardList(Board board) {
+		boardService.updateBoard(board);
+		return "redirect:/getBoardCommentList";
+	}
 }

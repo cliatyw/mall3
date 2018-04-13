@@ -38,9 +38,9 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<input type="button" value="등록" onclick="window.location.href='${pageContext.request.contextPath}/addItem'"/>
+	<input type="button" value="등록" onclick="window.location.href='${pageContext.request.contextPath}/addItem?categoryNo=${categoryNo}'"/>
 	<c:forEach var="start" begin="1" end="${lastPage}">
-		<a href="${pageContext.request.contextPath}/getCategoryList?currentPage=${start}&pagePerRow=${pagePerRow}">[${start}]</a>
+		<a href="${pageContext.request.contextPath}/getItemList?currentPage=${start}&pagePerRow=${pagePerRow}">[${start}]</a>
 	</c:forEach>
 </body>
 </html>

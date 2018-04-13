@@ -14,8 +14,8 @@ public class ItemDao {
 	private SqlSessionTemplate sqlSession;
 	final String NS = "com.test.mall3.item.service.ItemMapper.";
 	
-	public int totalCountItem() {
-		return sqlSession.selectOne(NS+"totalCountItem");
+	public int totalCountItem(int categoryNo) {
+		return sqlSession.selectOne(NS+"totalCountItem", categoryNo);
 		
 	}	
 	public List<Item> selectItemList(Map<String, Integer> map){

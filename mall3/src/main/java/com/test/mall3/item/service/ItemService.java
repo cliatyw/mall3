@@ -26,7 +26,7 @@ public class ItemService {
 		map.put("categoryNo", categoryNo);
 		List<Item> list = itemdao.selectItemList(map);
 		//2
-		int total = itemdao.totalCountItem();
+		int total = itemdao.totalCountItem(categoryNo);
 		// total, pagePerRow --> lastPage 알고리즘
 		int lastPage = 0;
 		if(total%pagePerRow==0) {

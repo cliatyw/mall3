@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +18,7 @@
 				<td><input type="text" name="itemPrice" size="20"></td>
 			<tr>
 		</table>
+		<input type="hidden" name="categoryNo" value="${categoryNo}">
 		<button type="submit">등록</button>
 	</form>
 </body>

@@ -1,1 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.test.mall3.board.service.BoardCommentMapper">
+	<select id="selectBoardList" 
+			parameterType="java.util.Map"
+			resultType="com.test.mall3.board.service.Board">
+		SELECT 
+			board_no as boardNo
+			,member_id as memberId
+			,board_title as boardTitle
+			,board_content as boardContent
+			,board_date as boardDate
+		FROM board
+		ORDER BY board_no DESC
+		LIMIT #{beginRow}, #{pagePerRow}
+	</select>
+	<select id="selectBoard1"
+			parameterType="Integer"
+			resultType="com.test.mall3.board.service.Board">
+		SELECT board_no as boardNo
+			,member_id as memberId
+			,board_title as boardTitle
+			,board_content as boardContent
+			,board_date as boardDate
+		FROM board 
+		WHERE board_no = #{boardNo}	
+	</select>		
+	<select id="totalCountBoard" resultType="Integer">
+		SELECT COUNT(*) FROM Board
+	</select>
+	<insert id="insertBoard" parameterType="com.test.mall3.board.service.Board">
+		INSERT INTO board(					
+			member_id
+			,board_title
+			,board_content
+			,board_date
+		) VALUES (
+			"guest",
+			#{boardTitle},
+			#{boardContent},
+			now()
+		)
+	</insert>
+	<delete id="deleteBoard" parameterType="Integer">
+		DELETE FROM board WHERE board_no = #{boardNo}
+	</delete>
+	<update id="updateBoard" parameterType="com.test.mall3.board.service.Board">
+		UPDATE board SET
+		 board_title = #{boardTitle},
+		 board_content = #{boardContent} 
+		 WHERE board_no = #{boardNo}
+	</update>
+</mapper>
+
+
+
+
+
+

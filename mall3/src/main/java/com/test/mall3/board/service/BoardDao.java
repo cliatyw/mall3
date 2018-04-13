@@ -42,4 +42,8 @@ public class BoardDao {
 		int row = sqlSession.update(NS+"updateBoard", board);
 		return row;
 	}
+	
+	public List<Board> selectBoard1(int boardNo) {
+		return sqlSession.selectList(NS+"selectBoard1", boardNo);
+	}
 }

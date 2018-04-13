@@ -1,5 +1,7 @@
 package com.test.mall3.boardcomment.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +33,7 @@ public class BoardCommentController {
 		model.addAttribute("boardDate", boardDate);
 		return "/boardcomment/getBoardCommentList";
 	}
+	
 	
 	@RequestMapping(value="/getBoardCommentList", method=RequestMethod.POST)
 	public String getBoardCommentList(BoardComment boardComment) {

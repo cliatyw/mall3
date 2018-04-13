@@ -23,6 +23,7 @@
 	<center>
 	<h1>게시판 내용</h1>
 	<form action="${pageContext.request.contextPath}/updateBoardList" method="post">
+		<c:forEach var="list" items="${list}">
 		<table border = "2" cellspacing = "0" cellpadding = "0">
 			<tr height = "30">
 			      <td align = "center" width = "125">수정</td>
@@ -37,34 +38,34 @@
 			<tr height = "30">
 			      <td align = "center" width = "125">순서</td>
 			      <td align = "center" width = "125">
-			      <input type="hidden" value="${boardNo}" name="boardNo">${boardNo}
+			      ${list.boardNo}
 			      </td>
 			      <td align = "center" width = "125">아이디</td>
 			      <td align = "center" width = "125">
-			      ${memberId}
+			      ${list.memberId}
 			      </td>
 			</tr>
 			<tr height = "30">
 			      <td align = "center" width = "250">작성일</td>
 			      <td>
-			      ${boardDate}
 			      ${list.boardDate}
 			      </td>
 			</tr>
 			<tr height = "30">
 			      <td align = "center" width = "125">글 제목</td>
 			      <td align = "left" width = "375" colspan = "3">
-			     <input type="text" value="${boardTitle} ${list.boardTitle}" readonly style="border:0" id="title" name="boardTitle">
+			      ${list.boardTitle}	
 			      </td>
 			</tr>
 			<tr>
 			      <td align = "center" width = "125">글 내용</td>
 			      <td align = "left" width = "375" colspan = "3">
-			       <input type="text" value="${boardContent} ${list.boardContent}" readonly style="border:0" id="content" name="boardContent">
+			      ${list.boardContent}
 			      </td>
 			</tr>
 		</table>
 		<p></p>
+		</c:forEach>
 	</form>	
 	<form action="${pageContext.request.contextPath}/getBoardCommentList" method="post">
 		<h1>댓글리스트</h1>

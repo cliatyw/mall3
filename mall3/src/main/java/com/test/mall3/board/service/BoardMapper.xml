@@ -17,6 +17,17 @@
 		ORDER BY board_no DESC
 		LIMIT #{beginRow}, #{pagePerRow}
 	</select>
+	<select id="selectBoard1"
+			parameterType="Integer"
+			resultType="com.test.mall3.board.service.Board">
+		SELECT board_no as boardNo
+			,member_id as memberId
+			,board_title as boardTitle
+			,board_content as boardContent
+			,board_date as boardDate
+		FROM board 
+		WHERE board_no = #{boardNo}	
+	</select>		
 	<select id="totalCountBoard" resultType="Integer">
 		SELECT COUNT(*) FROM Board
 	</select>

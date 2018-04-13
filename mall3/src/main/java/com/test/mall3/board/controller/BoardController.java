@@ -51,9 +51,12 @@ public class BoardController {
 		return "redirect:/getBoardList";
 	}
 	
+	/*화면수정완료된 화면을 보여주기*/
 	@RequestMapping(value="/updateBoardList", method=RequestMethod.POST)
-	public String updateBoardList(Board board) {
+	public String updateBoardList(Model model,Board board) {
 		boardService.updateBoard(board);
-		return "redirect:/getBoardList";
+		List<Board> list = boardService.selectBoard1(board.getBoardNo());
+		model.addAttribute("list", list);
+		return "/boardcomment/updateBoardCommentList";
 	}
 }

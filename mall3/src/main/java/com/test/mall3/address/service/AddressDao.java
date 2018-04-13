@@ -21,6 +21,19 @@ public class AddressDao {
 	
 	final String NS = "com.test.mall3.address.service.AddressMapper.";
 	/*
+	 * address를 매개변수로 받아 업데이트를하고 row를 리턴하는 메서드
+	 */
+	public int updateAddress(Address address) {
+		int row = sqlSession.update(NS+"updateAddress", address);
+		return row;
+	}
+	/*
+	 * address를 매개변수를 받아 한개의 address를 가져와 리턴하는 매서드
+	 */
+	public Address selectAddressOne(Address address) {
+		return sqlSession.selectOne(NS+"selectAddressOne", address);
+	}
+	/*
 	 * address를 매개변수로 받아 해당하는 주소를 삭제하고 row를 리턴받는 매서드
 	 */
 	public int deleteAddress(Address address) {

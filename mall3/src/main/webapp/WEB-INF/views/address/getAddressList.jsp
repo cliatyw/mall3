@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 <jsp:include page="../top.jsp"></jsp:include>
 	<h1>회원 리스트 </h1>
-	<form action="${pageContext.request.contextPath}/getAddressList?memberNo=${memberNo}" method="get">
+	<form action="${pageContext.request.contextPath}/getAddressList" method="get">
+		<input type="hidden" name="memberNo" value="${memberNo}">
 		<select name="pagePerRow">
 			<option value="3">3개씩</option>
 			<option value="5">5개씩</option>
@@ -27,8 +28,8 @@
 					<td>${address.addressNo}</td>
 					<td>${address.memberNo}</td>
 					<td>${address.addressContent}</td>
-					<td><a href="${pageContext.request.contextPath}/updateAddress?addressNo=${address.addressNo}">수정</a></td>
-					<td><a href="${pageContext.request.contextPath}/deleteAddress?addressNo=${address.addressNo}">삭제</a></td>
+					<td><a href="${pageContext.request.contextPath}/updateAddress?addressNo=${address.addressNo}&memberNo=${memberNo}">수정</a></td>
+					<td><a href="${pageContext.request.contextPath}/deleteAddress?addressNo=${address.addressNo}&memberNo=${memberNo}">삭제</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

@@ -18,7 +18,20 @@ public class AddressService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AddressService.class);
 	/*
-	 * 
+	 * address를 매개변수로 받아 dao에 수정매서드를 실행한후 row를 리턴받는 서비스
+	 */
+	public int updateAddress(Address address) {
+		int row = addressDao.updateAddress(address);
+		return row;
+	}
+	/*
+	 * address를 매개변수로 받아 dao에서 목록한개를 리턴한다.
+	 */
+	public Address selectAddressOne(Address address) {
+		return addressDao.selectAddressOne(address);
+	}
+	/*
+	 * address를 매개변수로 받아 dao에서 delete하고 row를 리턴한다.
 	 */
 	public int deleteAddress(Address address) {
 		int row = addressDao.deleteAddress(address);

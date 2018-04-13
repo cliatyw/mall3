@@ -20,7 +20,25 @@ public class AddressController {
 	private AddressService addressService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(AddressController.class);
-	
+	/*
+	 * address를 매개변수로 받아 한개의 주소를 수정한 후 목록으로 돌아간다.
+	 */
+	@RequestMapping(value="/updateAddress", method=RequestMethod.POST)
+	public String updateAddress(Address address) {
+		addressService.updateAddress(address);
+		return "redirect:/getAddressList?memberNo="+address.getMemberNo();
+	}
+	/*
+	 * address를 매개변수로 받아 한개의 목록을 가져와 model에 셋팅하고 업데이트 폼으로 이동한다.
+	 */
+	@RequestMapping(value="/updateAddress", method=RequestMethod.GET)
+	public String selectAddressOne(Model model, Address address) {
+		model.addAttribute("address", addressService.selectAddressOne(address));
+		return "/address/updateAddress";
+	}
+	/*
+	 * address받아 삭제하는 서비스를 호출하고 목록으로 돌아간다.
+	 */
 	@RequestMapping(value="/deleteAddress", method=RequestMethod.GET)
 	public String deleteAddress(Address address) {
 		addressService.deleteAddress(address);

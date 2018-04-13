@@ -32,8 +32,8 @@
 					<td>${item.itemNo}</td>
 					<td>${item.itemName}</td>
 					<td>${item.itemPrice}</td>
-					<td><a href="${pageContext.request.contextPath}/updateCategory?categoryNo=${category.categoryNo}">수정</a></td>
-					<td><a href="${pageContext.request.contextPath}/deleteCategory?categoryNo=${category.categoryNo}">삭제</a></td>
+					<td><a href="${pageContext.request.contextPath}/updateItem?itemNo=${item.itemNo}&categoryNo=${categoryNo}">수정</a></td>
+					<td><a href="${pageContext.request.contextPath}/deleteItem?itemNo=${item.itemNo}&categoryNo=${categoryNo}">삭제</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

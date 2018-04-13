@@ -26,5 +26,9 @@
 		INSERT INTO item (item_name,item_price,category_no) VALUES (#{itemName},#{itemPrice},#{categoryNo})
 	</insert>
 	
+	<delete id="deleteItem" parameterType="com.test.mall3.item.service.Item">
+		DELETE FROM item WHERE item_no = #{itemNo}
+	</delete>
+	
 </mapper>
 

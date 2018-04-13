@@ -30,7 +30,4 @@ public class Item {
 	public void setItemPrice(String itemPrice) {
 		this.itemPrice = itemPrice;
 	}
-	
-	
-	
 }

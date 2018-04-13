@@ -22,6 +22,9 @@
 		SELECT COUNT(*) FROM item
 	</select>
 			
+	<insert id="insertItem" parameterType="com.test.mall3.item.service.Item">
+		INSERT INTO item (item_name,item_price,category_no) VALUES (#{itemName},#{itemPrice},#{categoryNo})
+	</insert>
 	
 </mapper>
 

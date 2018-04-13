@@ -5,9 +5,9 @@
 
 <mapper namespace="com.test.mall3.category.service.CategoryMapper">
 
-	<insert id="deleteCategory" parameterType="com.test.mall3.category.service.Category">
+	<delete id="deleteCategory" parameterType="com.test.mall3.category.service.Category">
 		DELETE FROM category WHERE category_no = (#{categoryNo})
-	</insert>
+	</delete>
 
 	<select id="selectCategoryList" 
 			parameterType="java.util.Map" 

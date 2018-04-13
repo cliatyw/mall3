@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <jsp:include page="../top.jsp"></jsp:include>
 	<form action="${pageContext.request.contextPath}/addAddress" method = "post">
-		<input type="hidden" name="memberNo" value="${address.memberNo}">
+		<input type="hidden" name="memberNo" value="${memberNo}">
 		<table>
 			<tr>
 				<td>주소</td>

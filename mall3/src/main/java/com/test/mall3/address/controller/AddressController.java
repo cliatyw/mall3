@@ -20,18 +20,25 @@ public class AddressController {
 	private AddressService addressService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(AddressController.class);
+	
+	@RequestMapping(value="/deleteAddress", method=RequestMethod.GET)
+	public String deleteAddress(Address address) {
+		addressService.deleteAddress(address);
+		return "redirect:/getAddressList?memberNo="+address.getMemberNo();
+	}
 	/*
 	 * 주소 추가
 	 */
 	@RequestMapping(value="/addAddress", method=RequestMethod.GET)
-	public String getAddressList() {
+	public String getAddressList(Model model, @RequestParam(value="memberNo") int memberNo) {
+		model.addAttribute("memberNo", memberNo);
 		return "/address/addAddress";
 	}
 	
 	@RequestMapping(value="/addAddress", method=RequestMethod.POST)
 	public String getAddressList(Address address) {
 		addressService.addAddress(address);
-		return "/address/getAddressList?memberNo="+address.getMemberNo();
+		return "redirect:/getAddressList?memberNo="+address.getMemberNo();
 	}
 	/*
 	 * memberNo를 받아 서비스를 호출한다.
@@ -45,7 +52,7 @@ public class AddressController {
 		Map<String, Object> map = addressService.getAddressList(currentPage, pagePerRow, memberNo);
 		model.addAttribute("list", map.get("list"));
 		model.addAttribute("lastPage", map.get("lastPage"));
-		model.addAttribute("memberNo", map.get("memberNo"));
+		model.addAttribute("memberNo", memberNo);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("pagePerRow", pagePerRow);
 		return "/address/getAddressList";

@@ -21,10 +21,17 @@ public class AddressDao {
 	
 	final String NS = "com.test.mall3.address.service.AddressMapper.";
 	/*
+	 * address를 매개변수로 받아 해당하는 주소를 삭제하고 row를 리턴받는 매서드
+	 */
+	public int deleteAddress(Address address) {
+		int row = sqlSession.delete(NS+"deleteAddress", address);
+		return row;
+	}
+	/*
 	 * address를 매개변수로 받아 삽입하고 row로 리턴받는 매서드
 	 */
 	public int insertAddress(Address address) {
-		int row = sqlSession.insert(NS+"insertMember", address);
+		int row = sqlSession.insert(NS+"insertAddress", address);
 		return row;
 	}
 	/*

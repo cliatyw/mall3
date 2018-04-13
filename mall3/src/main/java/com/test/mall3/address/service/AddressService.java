@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class AddressService {
@@ -16,6 +17,13 @@ public class AddressService {
 	private AddressDao addressDao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(AddressService.class);
+	/*
+	 * 
+	 */
+	public int deleteAddress(Address address) {
+		int row = addressDao.deleteAddress(address);
+		return row;
+	}
 	/*
 	 * address를 매개변수로 받아 dao에서 insert를 하여 row로 리턴한다.
 	 */

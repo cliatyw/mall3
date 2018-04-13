@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.test.mall3.category.controller.CategoryController;
+import com.test.mall3.category.service.Category;
 import com.test.mall3.category.service.CategoryService;
+import com.test.mall3.item.service.Item;
 import com.test.mall3.item.service.ItemService;
 
 @Controller
@@ -20,6 +22,19 @@ public class ItemController {
 	@Autowired
 	private ItemService itemservice;
 	private static final Logger logger = LoggerFactory.getLogger(CategoryController.class);
+	
+	@RequestMapping(value="/addItem", method=RequestMethod.GET)
+	public String addItem() {
+		return "/item/addItem";
+	}
+
+	@RequestMapping(value="/addItem", method=RequestMethod.POST)
+	public String addItem(Item item) {
+		itemservice.addItem(item);
+		return "redirect:/getItemList?pagePerRow=10";
+	}
+	
+	
 	@RequestMapping(value="/getItemList", method=RequestMethod.GET)
 	public String getItemList(Model model
 									,@RequestParam(value="categoryNo") int categoryNo

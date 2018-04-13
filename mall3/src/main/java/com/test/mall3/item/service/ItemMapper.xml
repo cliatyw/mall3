@@ -5,7 +5,6 @@
 
 <mapper namespace="com.test.mall3.item.service.ItemMapper">
 
-
 	<select id="selectItemList" 
 			parameterType="java.util.Map" 
 			resultType="com.test.mall3.item.service.Item">

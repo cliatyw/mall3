@@ -42,6 +42,7 @@
 				<value>classpath:com/test/mall3/category/service/CategoryMapper.xml</value>
 				<value>classpath:com/test/mall3/address/service/AddressMapper.xml</value>
 				<value>classpath:com/test/mall3/item/service/ItemMapper.xml</value>
+				<value>classpath:com/test/mall3/boardcomment/service/BoardCommentMapper.xml</value>
 			</list>
 		</property>
 	</bean>

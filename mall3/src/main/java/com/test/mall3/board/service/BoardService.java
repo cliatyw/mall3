@@ -55,4 +55,9 @@ public class BoardService {
 		int row = boardDao.updateBoard(board);
 		return row;
 	}
+	
+	/*수정완료화면을 위한 select*/
+	public List<Board> selectBoard1(int boardNo) {
+		return boardDao.selectBoard1(boardNo);
+	}
 }

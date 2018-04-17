@@ -48,19 +48,18 @@
 			      <td align = "center" width = "250">작성일</td>
 			      <td>
 			      ${boardDate}
-			      ${list.boardDate}
 			      </td>
 			</tr>
 			<tr height = "30">
 			      <td align = "center" width = "125">글 제목</td>
 			      <td align = "left" width = "375" colspan = "3">
-			     <input type="text" value="${boardTitle} ${list.boardTitle}" readonly style="border:0" id="title" name="boardTitle">
+			     <input type="text" value="${boardTitle}" readonly style="border:0" id="title" name="boardTitle">
 			      </td>
 			</tr>
 			<tr>
 			      <td align = "center" width = "125">글 내용</td>
 			      <td align = "left" width = "375" colspan = "3">
-			       <input type="text" value="${boardContent} ${list.boardContent}" readonly style="border:0" id="content" name="boardContent">
+			       <input type="text" value="${boardContent}" readonly style="border:0" id="content" name="boardContent">
 			      </td>
 			</tr>
 		</table>
@@ -68,7 +67,10 @@
 	</form>	
 	<form action="${pageContext.request.contextPath}/getBoardCommentList" method="post">
 		<h1>댓글리스트</h1>
-		<input type="text" name="commentContent"><input type="submit" value="댓글등록">
+		<input type="hidden" value="${boardNo}" name="boardNo">
+		<input type="hidden" value="${sessionScope.loginMember.memberId}" name="memberId">
+		<input type="text" name="commentContent">
+		<input type="submit" value="댓글등록">
 	</form>
 	</center>	
 </body>

@@ -15,7 +15,6 @@ import com.test.mall3.boardcomment.service.BoardCommentService;
 
 @Controller
 public class BoardCommentController {
-
 	
 	@Autowired
 	private BoardCommentService boardCommentService;
@@ -34,10 +33,11 @@ public class BoardCommentController {
 		return "/boardcomment/getBoardCommentList";
 	}
 	
-	
+	/*댓글등록*/
 	@RequestMapping(value="/getBoardCommentList", method=RequestMethod.POST)
-	public String getBoardCommentList(BoardComment boardComment) {
-		boardCommentService.addBoardComment(boardComment);
-		return "/boardcomment/getBoardCommentList";
+	public String insertBoardCommentList(BoardComment boardComment) {
+		boardCommentService.insertrBoardComment(boardComment);
+		System.out.println(boardComment);
+		return "/boardcomment/updateBoardCommentList";
 	}
 }

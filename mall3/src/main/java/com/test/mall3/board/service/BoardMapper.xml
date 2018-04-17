@@ -38,7 +38,7 @@
 			,board_content
 			,board_date
 		) VALUES (
-			"guest",
+			#{memberId},
 			#{boardTitle},
 			#{boardContent},
 			now()

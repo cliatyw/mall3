@@ -33,11 +33,28 @@ public class BoardCommentController {
 		return "/boardcomment/getBoardCommentList";
 	}
 	
-	/*댓글등록*/
+	/*댓글등록시 댓글목록보여주기*/
 	@RequestMapping(value="/getBoardCommentList", method=RequestMethod.POST)
-	public String insertBoardCommentList(BoardComment boardComment) {
+	public String insertBoardCommentList(Model model,
+									@RequestParam(value="boardTitle") String boardTitle,
+									@RequestParam(value="memberId") String memberId,
+									@RequestParam(value="boardNo") int boardNo,
+									@RequestParam(value="boardContent") String boardContent,
+									@RequestParam(value="boardDate") String boardDate,
+									BoardComment boardComment) {
+		model.addAttribute("boardTitle", boardTitle);
+		model.addAttribute("memberId", memberId);
+		model.addAttribute("boardNo", boardNo);
+		model.addAttribute("boardContent", boardContent);
+		model.addAttribute("boardDate", boardDate);
+		
 		boardCommentService.insertrBoardComment(boardComment);
+		List<BoardComment> list = boardCommentService.selectBoardComment();
+		model.addAttribute("list", list);
+		model.addAttribute("boardComment", boardComment);
 		System.out.println(boardComment);
-		return "/boardcomment/updateBoardCommentList";
+		return "/boardcomment/getBoardCommentList";
 	}
+	
+	
 }

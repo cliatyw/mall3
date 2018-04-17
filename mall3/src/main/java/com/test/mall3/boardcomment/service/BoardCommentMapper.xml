@@ -15,7 +15,13 @@
 			#{commentContent},
 			#{memberId}
 		)
-	</insert>		
+	</insert>
+	<select id="selectBoardComment"
+			resultType="com.test.mall3.boardcomment.service.BoardComment">
+		SELECT comment_content as commentContent
+			,member_id as memberId
+		FROM board_comment
+	</select>		
 </mapper>
 
 

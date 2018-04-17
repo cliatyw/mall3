@@ -67,10 +67,40 @@
 	</form>	
 	<form action="${pageContext.request.contextPath}/getBoardCommentList" method="post">
 		<h1>댓글리스트</h1>
-		<input type="hidden" value="${boardNo}" name="boardNo">
-		<input type="hidden" value="${sessionScope.loginMember.memberId}" name="memberId">
-		<input type="text" name="commentContent">
+		<c:forEach var="list" items="${list}">
+		<table border="1">
+			<td width="150">
+				<div style="text-align:center">
+					${list.memberId}
+				</div>
+			</td>
+			<td width="550">
+				<div>
+					${list.commentContent}
+				</div>
+			</td>
+		</table>
+		</c:forEach>	
+		<br>
+		<table border="1">
+			<td width="150">
+				<div style="text-align:center">
+					${sessionScope.loginMember.memberId}
+				</div>
+			</td>
+			<td width="550">
+				<div>
+					<textarea name="commentContent" rows="4" cols="70"></textarea>
+				</div>
+			</td>
+		</table>
 		<input type="submit" value="댓글등록">
+		<input type="hidden" value="${boardNo}" name="boardNo">
+		<input type="hidden" value="${memberId}" name="memberId">
+		<input type="hidden" value="${boardDate}" name="boardDate">
+		<input type="hidden" value="${boardTitle}" name="boardTitle">
+		<input type="hidden" value="${boardContent}" name="boardContent">
+		<input type="hidden" value="${sessionScope.loginMember.memberId}" name="memberId">
 	</form>
 	</center>	
 </body>

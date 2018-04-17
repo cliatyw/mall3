@@ -1,5 +1,7 @@
 package com.test.mall3.boardcomment.service;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,5 +22,9 @@ public class BoardCommentDao {
 	public int insertBoardComment(BoardComment BoardComment) {
 		int row = sqlSession.insert(NS+"insertBoardComment", BoardComment);
 		return row;
+	}
+	
+	public List<BoardComment> selectBoardComment(){
+		return sqlSession.selectList(NS+"selectBoardComment");
 	}
 }

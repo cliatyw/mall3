@@ -8,7 +8,10 @@ public class BoardCommentService {
 
 	@Autowired
 	private BoardCommentDao boardCommentDao;
-	public void addBoardComment(BoardComment boardComment) {
-		boardCommentDao.insertBoardComment(boardComment);
+	
+	public int insertrBoardComment(BoardComment boardComment) {
+		int row = boardCommentDao.insertBoardComment(boardComment);
+		return row;
 	}
+	
 }

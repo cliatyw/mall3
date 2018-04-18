@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<jsp:include page="../top.jsp"></jsp:include>
+<jsp:include page="../header.jsp"></jsp:include>
 	<h1>회원 리스트 </h1>
 	<form action="${pageContext.request.contextPath}/getAddressList" method="get">
 		<input type="hidden" name="memberNo" value="${memberNo}">

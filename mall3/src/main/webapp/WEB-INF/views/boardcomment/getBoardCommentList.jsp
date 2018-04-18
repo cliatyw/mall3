@@ -16,6 +16,9 @@
 				$("p").after('<input type="submit" value="수정확인">');
 				$('.update').hide();
 			});
+			$('form').submit(function(){
+				$('#boardNo').text("${board.boardNo}");
+			});
 		});
 	</script>
 </head>
@@ -31,35 +34,36 @@
 			      </td>
 			      <td align = "center" width = "125">삭제</td>
 			      <td align = "center" width = "125">
-			      <a href="${pageContext.request.contextPath}/deleteBoard?deleteBoardNo= ${boardNo}"><input type="button" value="삭제"></a>
+			      <a href="${pageContext.request.contextPath}/deleteBoard?deleteBoardNo= ${board.boardNo}"><input type="button" value="삭제"></a>
 			      </td>
 			</tr>
 			<tr height = "30">
 			      <td align = "center" width = "125">순서</td>
 			      <td align = "center" width = "125">
-			      <input type="hidden" value="${boardNo}" name="boardNo">${boardNo}
+			      <input type="hidden" value="${board.boardNo}" name="boardNo">
+			      <span id="boardNo"></span>
 			      </td>
 			      <td align = "center" width = "125">아이디</td>
 			      <td align = "center" width = "125">
-			      ${memberId}
+			      ${board.memberId}
 			      </td>
 			</tr>
 			<tr height = "30">
 			      <td align = "center" width = "250">작성일</td>
 			      <td>
-			      ${boardDate}
+			      ${board.boardDate}
 			      </td>
 			</tr>
 			<tr height = "30">
 			      <td align = "center" width = "125">글 제목</td>
 			      <td align = "left" width = "375" colspan = "3">
-			     <input type="text" value="${boardTitle}" readonly style="border:0" id="title" name="boardTitle">
+			     <input type="text" value="${board.boardTitle}" readonly style="border:0" id="title" name="boardTitle">
 			      </td>
 			</tr>
 			<tr>
 			      <td align = "center" width = "125">글 내용</td>
 			      <td align = "left" width = "375" colspan = "3">
-			       <input type="text" value="${boardContent}" readonly style="border:0" id="content" name="boardContent">
+			       <input type="text" value="${board.boardContent}" readonly style="border:0" id="content" name="boardContent">
 			      </td>
 			</tr>
 		</table>
@@ -95,12 +99,12 @@
 			</td>
 		</table>
 		<input type="submit" value="댓글등록">
-		<input type="hidden" value="${boardNo}" name="boardNo">
-		<input type="hidden" value="${memberId}" name="memberId">
-		<input type="hidden" value="${boardDate}" name="boardDate">
-		<input type="hidden" value="${boardTitle}" name="boardTitle">
-		<input type="hidden" value="${boardContent}" name="boardContent">
-		<input type="hidden" value="${sessionScope.loginMember.memberId}" name="memberId">
+		<input type="hidden" value="${board.boardNo}" name="boardNo">
+		<input type="hidden" value="${board.memberId}" name="memberId">
+		<input type="hidden" value="${board.boardDate}" name="boardDate">
+		<input type="hidden" value="${board.boardTitle}" name="boardTitle">
+		<input type="hidden" value="${board.boardContent}" name="boardContent">
+		<input type="hidden" value="${sessionScope.loginMember.memberId}" name="sessionMemberId">
 	</form>
 	</center>	
 </body>

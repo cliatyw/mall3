@@ -17,11 +17,22 @@
 		)
 	</insert>
 	<select id="selectBoardComment"
+			parameterType="Integer"
 			resultType="com.test.mall3.boardcomment.service.BoardComment">
 		SELECT comment_content as commentContent
 			,member_id as memberId
 		FROM board_comment
-	</select>		
+		WHERE board_no = #{boardNo}
+	</select>
+	<select id="selectBoardCommentList"
+			resultType="com.test.mall3.board.service.Board">
+		SELECT board_no as boardNo
+		,member_id as memberId
+		,board_title as boardTitle
+		,board_content as boardContent
+		,board_date as boardDate
+		FROM board	
+	</select>			
 </mapper>
 
 

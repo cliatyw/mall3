@@ -104,7 +104,7 @@
 		<input type="hidden" value="${board.boardDate}" name="boardDate">
 		<input type="hidden" value="${board.boardTitle}" name="boardTitle">
 		<input type="hidden" value="${board.boardContent}" name="boardContent">
-		<input type="hidden" value="${sessionScope.loginMember.memberId}" name="sessionMemberId">
+		<input type="hidden" value="${sessionScope.loginMember}" name="sessionMemberId">
 	</form>
 	</center>	
 </body>

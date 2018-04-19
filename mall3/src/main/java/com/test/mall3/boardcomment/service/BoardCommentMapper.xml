@@ -19,7 +19,9 @@
 	<select id="selectBoardComment"
 			parameterType="Integer"
 			resultType="com.test.mall3.boardcomment.service.BoardComment">
-		SELECT comment_content as commentContent
+		SELECT 
+		comment_no as commentNo
+		,comment_content as commentContent
 			,member_id as memberId
 		FROM board_comment
 		WHERE board_no = #{boardNo}
@@ -32,7 +34,18 @@
 		,board_content as boardContent
 		,board_date as boardDate
 		FROM board	
-	</select>			
+	</select>
+	<select id="selectBoardCommentMemberId"
+			resultType="String">
+		SELECT DISTINCT member_id as memberId
+		FROM board_comment	
+	</select>
+	<update id="updateBoardComment"
+			parameterType="com.test.mall3.boardcomment.service.BoardComment">
+		UPDATE board_comment SET
+		comment_content = #{commentContent}
+	    WHERE comment_no = #{commentNo}
+	</update>				
 </mapper>
 
 

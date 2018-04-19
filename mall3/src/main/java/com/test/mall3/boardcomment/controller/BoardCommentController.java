@@ -30,20 +30,28 @@ public class BoardCommentController {
 		model.addAttribute("board", board);
 		List<BoardComment> list = boardCommentService.selectBoardComment(board.getBoardNo());
 		model.addAttribute("list", list);
+		List<BoardComment> list2 = boardCommentService.selectBoardCommentMemberId();
+		System.out.println(list2);
+		model.addAttribute("memberId", list2);
 		return "/boardcomment/getBoardCommentList";
 	}
 	
 	/*댓글등록*/
 	@RequestMapping(value="/getBoardCommentList", method=RequestMethod.POST)
-	public String insertBoardCommentList(Model model,BoardComment boardComment,Board board) {
+	public String insertBoardCommentList(Model model,HttpSession session,BoardComment boardComment,Board board) {
+		String memberId = (String) session.getAttribute("loginMemberId");
+		boardComment.setMemberId(memberId);
 		model.addAttribute("board", board);	
 		boardCommentService.insertrBoardComment(boardComment);
 		List<BoardComment> list = boardCommentService.selectBoardComment(boardComment.getBoardNo());
-		model.addAttribute("list", list);
-		model.addAttribute("boardComment", boardComment);
-		System.out.println(boardComment);
+		model.addAttribute("list", list);	
+		List<BoardComment> list2 = boardCommentService.selectBoardCommentMemberId();
+		model.addAttribute("memberId", list2);
 		return "/boardcomment/getBoardCommentList";
 	}
-	
-	
+	/*댓글수정*/
+	@RequestMapping(value="/updateBoardComment", method=RequestMethod.POST)
+	public void updateBoardComment(BoardComment boardComment) {
+		System.out.println("댓글수정실행");
+	}
 }

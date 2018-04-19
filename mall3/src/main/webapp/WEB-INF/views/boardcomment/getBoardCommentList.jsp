@@ -19,6 +19,11 @@
 			$('form').submit(function(){
 				$('#boardNo').text("${board.boardNo}");
 			});
+			$('.commentUpdate').click(function(){
+				$(this).parents('span').find('.commentContent').attr('type','"text"');
+				$(this).parents('span').find('.commentRemove').remove();
+				$(this).parents('span').find('#updateCommentContent').html('<input type="submit" value="수정확인">');
+			});	
 		});
 	</script>
 </head>
@@ -41,7 +46,7 @@
 			      <td align = "center" width = "125">순서</td>
 			      <td align = "center" width = "125">
 			      <input type="hidden" value="${board.boardNo}" name="boardNo">
-			      <span id="boardNo"></span>
+			      ${board.boardNo}
 			      </td>
 			      <td align = "center" width = "125">아이디</td>
 			      <td align = "center" width = "125">
@@ -72,24 +77,34 @@
 	<form action="${pageContext.request.contextPath}/getBoardCommentList" method="post">
 		<h1>댓글리스트</h1>
 		<c:forEach var="list" items="${list}">
-		<table border="1">
-			<td width="150">
-				<div style="text-align:center">
-					${list.memberId}
-				</div>
-			</td>
-			<td width="550">
-				<div>
-					${list.commentContent}
-				</div>
-			</td>
-		</table>
-		</c:forEach>	
+			<table border="1">
+				<td width="150">
+					<div style="text-align:center">
+						${list.memberId}
+					</div>
+				</td>
+				<td width="550">
+					<div>
+						${list.commentContent}
+					</div>	
+				<c:if test="${list.memberId == sessionScope.loginMemberId}">						
+					<span>
+						<input type="button" class="commentUpdate" value="수정">
+						<form action="${pageContext.request.contextPath}/updateBoardComment" method="post">
+						<input type="hidden" value="${list.commentContent}" style="border:1" class="commentContent" name="updateCommentContent" size="50">						
+						<span id="updateCommentContent"></span>
+						</form>
+						<input type="button" class="commentRemove" value="삭제">
+					</span>
+				</c:if>								
+				</td>
+			</table>						
+		</c:forEach>		
 		<br>
 		<table border="1">
 			<td width="150">
 				<div style="text-align:center">
-					${sessionScope.loginMember.memberId}
+					${sessionScope.loginMemberId}
 				</div>
 			</td>
 			<td width="550">
@@ -104,7 +119,6 @@
 		<input type="hidden" value="${board.boardDate}" name="boardDate">
 		<input type="hidden" value="${board.boardTitle}" name="boardTitle">
 		<input type="hidden" value="${board.boardContent}" name="boardContent">
-		<input type="hidden" value="${sessionScope.loginMember}" name="sessionMemberId">
 	</form>
 	</center>	
 </body>

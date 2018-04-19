@@ -28,9 +28,13 @@ public class BoardCommentDao {
 	public List<BoardComment> selectBoardComment(int boardNo){
 		return sqlSession.selectList(NS+"selectBoardComment",boardNo);
 	}
-	
-	/*댓글등록시 게시판화면을 보여주기위한 검색*/
-	public List<Board> selectBoardCommentList(){
-		return sqlSession.selectList(NS+"selectBoardCommentList");
+	/*댓글 수정,삭제시 memberId확인*/
+	public List<BoardComment> selectBoardCommentMemberId(){
+		return sqlSession.selectList(NS+"selectBoardCommentMemberId");
+	}
+	/*댓글수정*/
+	public int updateBoardComment(BoardComment boardComment) {
+		int row = sqlSession.update(NS+"updateBoardComment", boardComment);
+		return row;
 	}
 }

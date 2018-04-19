@@ -21,9 +21,13 @@ public class BoardCommentService {
 	public List<BoardComment> selectBoardComment(int boardNo){
 		return boardCommentDao.selectBoardComment(boardNo);
 	}
-	
-	/*댓글등록시 게시판화면을 보여주기위한 검색*/
-	public List<Board> selectBoardCommentList(){
-		return boardCommentDao.selectBoardCommentList();
+	/*댓글 수정,삭제시 memberId확인*/
+	public List<BoardComment> selectBoardCommentMemberId(){
+		return boardCommentDao.selectBoardCommentMemberId();
+	}
+	/*댓글수정*/
+	public int updateBoardComment(BoardComment boardComment) {
+		int row = boardCommentDao.updateBoardComment(boardComment);
+		return row;
 	}
 }

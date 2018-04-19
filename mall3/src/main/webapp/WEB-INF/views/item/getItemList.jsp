@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="../left.jsp"></jsp:include>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 	<title>getItemList.jsp</title>
 </head>
 <body>
-<h1>아이템</h1>
+<h1>${categoryName}목록</h1>
 		<form action="${pageContext.request.contextPath}/getItemList?pagePerRow=pagePerRow">
 			<select name="pagePerRow" id="pagePerRow">
 				<option value="5">5</option>
@@ -19,7 +20,6 @@
 	<table>
 		<thead>
 			<tr>
-				<th>no</th>
 				<th>아이템</th>
 				<th>가격</th>
 				<th>수정</th>
@@ -29,7 +29,6 @@
 		<tbody>
 			<c:forEach var="item" items="${list}">
 				<tr>
-					<td>${item.itemNo}</td>
 					<td>${item.itemName}</td>
 					<td>${item.itemPrice}</td>
 					<td><a href="${pageContext.request.contextPath}/updateItem?itemNo=${item.itemNo}&categoryNo=${categoryNo}">수정</a></td>

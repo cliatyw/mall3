@@ -17,7 +17,6 @@
 			,category_name AS categoryName
 		FROM category 
 		ORDER BY category_no DESC
-		LIMIT #{beginRow}, #{pagePerRow}
 	</select>
 	
 	<select id = "totalCountCategory" resultType = "Integer">

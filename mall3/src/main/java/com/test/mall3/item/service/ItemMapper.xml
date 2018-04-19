@@ -29,6 +29,18 @@
 	<delete id="deleteItem" parameterType="com.test.mall3.item.service.Item">
 		DELETE FROM item WHERE item_no = #{itemNo}
 	</delete>
+		
+	<update id="updateItem" parameterType="com.test.mall3.item.service.Item">
+		UPDATE item SET 
+		item_name=#{itemName} , 
+		item_price=#{itemPrice} , 
+		category_no=#{categoryNo} WHERE 
+		item_no = #{itemNo}
+	</update>
+	
+	<select id="selectItemOne" parameterType="com.test.mall3.item.service.Item" resultType="com.test.mall3.item.service.Item">
+		SELECT category_no AS categoryNo , item_name AS itemName , item_price AS itemPrice FROM item WHERE item_no=#{itemNo}
+	</select>
 	
 </mapper>
 

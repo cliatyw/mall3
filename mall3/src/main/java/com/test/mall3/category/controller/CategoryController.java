@@ -30,26 +30,21 @@ public class CategoryController {
 	@RequestMapping(value="/addCategory", method=RequestMethod.POST)
 	public String addCategory(Category category) {
 		categoryservice.addCategory(category);
-		return "redirect:/getCategoryList?pagePerRow=10";
+		return "redirect:/left?pagePerRow=10";
 	}
 	
-	@RequestMapping(value="/getCategoryList", method=RequestMethod.GET)
-	public String getCategoryList(Model model
-									,@RequestParam(value="currentPage", defaultValue="1") int currentPage
-									,@RequestParam(value="pagePerRow", defaultValue="10", required=true) int pagePerRow) {
-		
-		Map<String, Object> map = categoryservice.getCategoryList(currentPage,pagePerRow);
+	@RequestMapping(value="/left", method=RequestMethod.GET)
+	public String getCategoryList(Model model,Category category) {
+	
+		Map<String, Object> map = categoryservice.getCategoryList(category);
 		model.addAttribute("list", map.get("list"));
-		model.addAttribute("lastPage",map.get("lastPage"));
-		model.addAttribute("currentPage",map.get("currentPage"));
-		model.addAttribute("pagePerRow",pagePerRow);
-		return "/category/getCategoryList";
+		return "/left";
 	}
 	
 	@RequestMapping(value="/deleteCategory", method=RequestMethod.GET )
 	public String deleteCategory(Category category) {
 		categoryservice.deleteCategory(category);
-		return "redirect:/getCategoryList";
+		return "redirect:/left";
 	}
 	
 	@RequestMapping(value="/updateCategory", method=RequestMethod.GET )
@@ -61,7 +56,7 @@ public class CategoryController {
 	@RequestMapping(value="/updateCategory", method=RequestMethod.POST )
 	public String updateCategory(Category category) {
 		categoryservice.updateCategory(category);
-		return "redirect:/getCategoryList";
+		return "redirect:/left";
 	}
 
 } 

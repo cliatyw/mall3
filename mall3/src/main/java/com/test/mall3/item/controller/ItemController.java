@@ -26,13 +26,13 @@ public class ItemController {
 	@RequestMapping(value="/updateItem", method=RequestMethod.GET )
 	public String updateCategory(Model model, Item item) {
 		model.addAttribute("item", itemservice.selectItemOne(item));
-		return "category/updateItem";
+		return "/item/updateItem";
 	}
 	
 	@RequestMapping(value="/updateItem", method=RequestMethod.POST )
 	public String updateCategory(Item item) {
 		itemservice.updateItem(item);
-		return "redirect:/getItemList";
+		return "redirect:/getItemList?categoryNo="+item.getCategoryNo();
 	}
 	
 	@RequestMapping(value="/deleteItem", method=RequestMethod.GET )
@@ -57,6 +57,7 @@ public class ItemController {
 	
 	@RequestMapping(value="/getItemList", method=RequestMethod.GET)
 	public String getItemList(Model model
+									,@RequestParam(value="categoryName") String categoryName
 									,@RequestParam(value="categoryNo") int categoryNo
 									,@RequestParam(value="currentPage", defaultValue="1") int currentPage
 									,@RequestParam(value="pagePerRow", defaultValue="10", required=true) int pagePerRow) {
@@ -66,6 +67,7 @@ public class ItemController {
 		model.addAttribute("lastPage",map.get("lastPage"));
 		model.addAttribute("currentPage",map.get("currentPage"));
 		model.addAttribute("categoryNo",categoryNo);
+		model.addAttribute("categoryName",categoryName);
 		model.addAttribute("pagePerRow",pagePerRow);
 		return "/item/getItemList";
 	}

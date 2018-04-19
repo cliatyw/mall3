@@ -7,7 +7,7 @@
 	<title>getItemList.jsp</title>
 </head>
 <body>
-<h1>${categoryName}목록</h1>
+<h1>목록</h1>
 		<form action="${pageContext.request.contextPath}/getItemList?pagePerRow=pagePerRow">
 			<select name="pagePerRow" id="pagePerRow">
 				<option value="5">5</option>

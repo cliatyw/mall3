@@ -6,11 +6,11 @@
 		<table>
 			<tr>
 				<td>이름</td>
-				<td><input type="text" name="itemName" value="${item.itemPrice}"></td>
+				<td><input type="text" name="itemName" value="${item.itemName}"></td>
 			</tr>
 			<tr>
 				<td>가격</td>
-				<td><input type="text" name="itemPrice" value="${item.itemName}"></td>
+				<td><input type="text" name="itemPrice" value="${item.itemPrice}"></td>
 			</tr>
 		</table>
 		<button type="submit">item 수정 버튼</button>

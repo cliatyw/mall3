@@ -1,7 +1,6 @@
 package com.test.mall3.category.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +18,8 @@ public class CategoryDao {
 		
 	}
 	
-	public List<Category> selectCategoryList(Map<String, Integer> map){
-		return sqlSession.selectList(NS+"selectCategoryList", map);
+	public List<Category> selectCategoryList(){
+		return sqlSession.selectList(NS+"selectCategoryList");
 	}
 	
 	public int insertCategory(Category category) {

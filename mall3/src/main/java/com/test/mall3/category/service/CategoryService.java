@@ -1,5 +1,6 @@
 package com.test.mall3.category.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,12 +18,10 @@ public class CategoryService {
 	private CategoryDao categorydao;
 	private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
 
-	public Map<String, Object> getCategoryList(Category category) {
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		List<Category> list = categorydao.selectCategoryList(map);
-		Map<String, Object> returnMap = new HashMap<String, Object>();
-		returnMap.put("list", list);
-		return returnMap;
+	public List<Category> getCategoryList() {
+		List<Category> list = new ArrayList<Category>();
+		list = categorydao.selectCategoryList();
+		return list;
 	}
 	
 	public int addCategory(Category category) {

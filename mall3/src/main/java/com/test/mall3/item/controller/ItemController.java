@@ -24,13 +24,13 @@ public class ItemController {
 	private static final Logger logger = LoggerFactory.getLogger(CategoryController.class);
 	
 	@RequestMapping(value="/updateItem", method=RequestMethod.GET )
-	public String updateCategory(Model model, Item item) {
+	public String selectItemOne(Model model, Item item) {
 		model.addAttribute("item", itemservice.selectItemOne(item));
 		return "/item/updateItem";
 	}
 	
 	@RequestMapping(value="/updateItem", method=RequestMethod.POST )
-	public String updateCategory(Item item) {
+	public String updateItem(Item item) {
 		itemservice.updateItem(item);
 		return "redirect:/getItemList?categoryNo="+item.getCategoryNo();
 	}
@@ -57,7 +57,6 @@ public class ItemController {
 	
 	@RequestMapping(value="/getItemList", method=RequestMethod.GET)
 	public String getItemList(Model model
-									,@RequestParam(value="categoryName") String categoryName
 									,@RequestParam(value="categoryNo") int categoryNo
 									,@RequestParam(value="currentPage", defaultValue="1") int currentPage
 									,@RequestParam(value="pagePerRow", defaultValue="10", required=true) int pagePerRow) {
@@ -67,7 +66,6 @@ public class ItemController {
 		model.addAttribute("lastPage",map.get("lastPage"));
 		model.addAttribute("currentPage",map.get("currentPage"));
 		model.addAttribute("categoryNo",categoryNo);
-		model.addAttribute("categoryName",categoryName);
 		model.addAttribute("pagePerRow",pagePerRow);
 		return "/item/getItemList";
 	}

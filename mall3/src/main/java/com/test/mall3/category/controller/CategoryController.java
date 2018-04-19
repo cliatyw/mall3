@@ -34,10 +34,10 @@ public class CategoryController {
 	}
 	
 	@RequestMapping(value="/getCategoryList", method=RequestMethod.GET)
-	public String getCategoryList(Model model,Category category) {
+	public String getCategoryList(Model model) {
 	
-		Map<String, Object> map = categoryservice.getCategoryList(category);
-		model.addAttribute("list", map.get("list"));
+		List<Category> list = categoryservice.getCategoryList();
+		model.addAttribute("list", list);
 		return "/category/getCategoryList";
 	}
 	

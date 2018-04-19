@@ -10,7 +10,7 @@
 	</delete>
 
 	<select id="selectCategoryList" 
-			parameterType="java.util.Map" 
+			parameterType="java.util.List" 
 			resultType="com.test.mall3.category.service.Category">
 		SELECT
 			category_no AS categoryNo

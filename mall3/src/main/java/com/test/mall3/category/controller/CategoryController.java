@@ -30,21 +30,21 @@ public class CategoryController {
 	@RequestMapping(value="/addCategory", method=RequestMethod.POST)
 	public String addCategory(Category category) {
 		categoryservice.addCategory(category);
-		return "redirect:/left?pagePerRow=10";
+		return "redirect:/getCategoryList?pagePerRow=10";
 	}
 	
-	@RequestMapping(value="/left", method=RequestMethod.GET)
+	@RequestMapping(value="/getCategoryList", method=RequestMethod.GET)
 	public String getCategoryList(Model model,Category category) {
 	
 		Map<String, Object> map = categoryservice.getCategoryList(category);
 		model.addAttribute("list", map.get("list"));
-		return "/left";
+		return "/category/getCategoryList";
 	}
 	
 	@RequestMapping(value="/deleteCategory", method=RequestMethod.GET )
 	public String deleteCategory(Category category) {
 		categoryservice.deleteCategory(category);
-		return "redirect:/left";
+		return "redirect:/getCategoryList";
 	}
 	
 	@RequestMapping(value="/updateCategory", method=RequestMethod.GET )
@@ -56,7 +56,7 @@ public class CategoryController {
 	@RequestMapping(value="/updateCategory", method=RequestMethod.POST )
 	public String updateCategory(Category category) {
 		categoryservice.updateCategory(category);
-		return "redirect:/left";
+		return "redirect:/getCategoryList";
 	}
 
 } 

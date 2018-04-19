@@ -23,7 +23,7 @@ public class IndexController {
 	@RequestMapping(value = {"/","/index"}, method = RequestMethod.GET)
 	public String home(Model model) {
 		List<Category> list = categoryService.getCategoryList();
-		model.addAttribute("list", list);
+		model.addAttribute("cateList", list);
 		return "index";
 	}
 }

@@ -1,5 +1,6 @@
 package com.test.mall3.member.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.test.mall3.category.service.Category;
+import com.test.mall3.category.service.CategoryService;
 import com.test.mall3.member.service.Member;
 import com.test.mall3.member.service.MemberService;
 
@@ -20,6 +23,8 @@ import com.test.mall3.member.service.MemberService;
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private CategoryService categoryService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	/*
@@ -43,6 +48,8 @@ public class MemberController {
 	
 	@RequestMapping(value= "/updateMember", method=RequestMethod.GET)
 	public String updateMember(Model model, Member member) {
+		List<Category> list = categoryService.getCategoryList();
+		model.addAttribute("cateList", list);
 		model.addAttribute("member", memberService.selectMemberOne(member));
 		return "/member/updateMember";
 	}
@@ -57,7 +64,9 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value= "/login", method=RequestMethod.GET)
-	public String login() {
+	public String login(Model model) {
+		List<Category> list = categoryService.getCategoryList();
+		model.addAttribute("cateList", list);
 		return "login";
 	}
 	
@@ -81,7 +90,9 @@ public class MemberController {
 	 * post 방식은 service에서 addMember 호출하고 Dao에서 insertMember호출
 	 */
 	@RequestMapping(value="/addMember", method=RequestMethod.GET)
-	public String addMember() {
+	public String addMember(Model model) {
+		List<Category> list = categoryService.getCategoryList();
+		model.addAttribute("cateList", list);
 		return "/member/addMember";
 	}
 	
@@ -99,6 +110,8 @@ public class MemberController {
 	public String getMemberList(Model model
 			, @RequestParam(value="currentPage", defaultValue="1") int currentPage
 			, @RequestParam(value="pagePerRow", defaultValue="10", required=true) int pagePerRow) {
+		List<Category> list = categoryService.getCategoryList();
+		model.addAttribute("cateList", list);
 		Map<String, Object> map = memberService.getMemberList(currentPage, pagePerRow);
 		model.addAttribute("list", map.get("list"));
 		model.addAttribute("lastPage", map.get("lastPage"));

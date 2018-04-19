@@ -1,5 +1,6 @@
 package com.test.mall3.address.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -13,11 +14,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.test.mall3.address.service.Address;
 import com.test.mall3.address.service.AddressService;
+import com.test.mall3.category.service.Category;
+import com.test.mall3.category.service.CategoryService;
 
 @Controller
 public class AddressController {
 	@Autowired
 	private AddressService addressService;
+	@Autowired
+	private CategoryService categoryService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(AddressController.class);
 	/*
@@ -33,6 +38,8 @@ public class AddressController {
 	 */
 	@RequestMapping(value="/updateAddress", method=RequestMethod.GET)
 	public String selectAddressOne(Model model, Address address) {
+		List<Category> list = categoryService.getCategoryList();
+		model.addAttribute("cateList", list);
 		model.addAttribute("address", addressService.selectAddressOne(address));
 		return "/address/updateAddress";
 	}
@@ -49,6 +56,8 @@ public class AddressController {
 	 */
 	@RequestMapping(value="/addAddress", method=RequestMethod.GET)
 	public String getAddressList(Model model, @RequestParam(value="memberNo") int memberNo) {
+		List<Category> list = categoryService.getCategoryList();
+		model.addAttribute("cateList", list);
 		model.addAttribute("memberNo", memberNo);
 		return "/address/addAddress";
 	}
@@ -67,6 +76,8 @@ public class AddressController {
 			, @RequestParam(value="memberNo") int memberNo
 			, @RequestParam(value="currentPage", defaultValue="1") int currentPage
 			, @RequestParam(value="pagePerRow", defaultValue="10", required=true) int pagePerRow) {
+		List<Category> list = categoryService.getCategoryList();
+		model.addAttribute("cateList", list);
 		Map<String, Object> map = addressService.getAddressList(currentPage, pagePerRow, memberNo);
 		model.addAttribute("list", map.get("list"));
 		model.addAttribute("lastPage", map.get("lastPage"));

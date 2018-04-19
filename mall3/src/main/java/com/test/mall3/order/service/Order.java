@@ -1,29 +1,39 @@
 package com.test.mall3.order.service;
 
 public class Order {
-	private int member_no;
-	private int item_no;
-	private String order_date;
-	public int getMember_no() {
-		return member_no;
+	private int orderNo;
+	private int memberNo;
+	private int itemNo;
+	private String orderDate;
+	
+	public int getOrderNo() {
+		return orderNo;
 	}
-	public void setMember_no(int member_no) {
-		this.member_no = member_no;
+	public void setOrderNo(int orderNo) {
+		this.orderNo = orderNo;
 	}
-	public int getItem_no() {
-		return item_no;
+	public int getMemberNo() {
+		return memberNo;
 	}
-	public void setItem_no(int item_no) {
-		this.item_no = item_no;
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
-	public String getOrder_date() {
-		return order_date;
+	public int getItemNo() {
+		return itemNo;
 	}
-	public void setOrder_date(String order_date) {
-		this.order_date = order_date;
+	public void setItemNo(int itemNo) {
+		this.itemNo = itemNo;
 	}
+	public String getOrderDate() {
+		return orderDate;
+	}
+	public void setOrderDate(String orderDate) {
+		this.orderDate = orderDate;
+	}
+	
 	@Override
 	public String toString() {
-		return "Order [member_no=" + member_no + ", item_no=" + item_no + ", order_date=" + order_date + "]";
+		return "Order [orderNo=" + orderNo + ", memberNo=" + memberNo + ", itemNo=" + itemNo + ", orderDate="
+				+ orderDate + "]";
 	}
 }

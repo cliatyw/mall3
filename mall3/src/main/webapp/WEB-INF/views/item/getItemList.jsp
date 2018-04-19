@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="../left.jsp"></jsp:include>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +23,7 @@
 				<th>가격</th>
 				<th>수정</th>
 				<th>삭제</th>
+				<th>주문</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -33,6 +33,7 @@
 					<td>${item.itemPrice}</td>
 					<td><a href="${pageContext.request.contextPath}/updateItem?itemNo=${item.itemNo}&categoryNo=${categoryNo}">수정</a></td>
 					<td><a href="${pageContext.request.contextPath}/deleteItem?itemNo=${item.itemNo}&categoryNo=${categoryNo}">삭제</a></td>
+					<td><a href="${pageContext.request.contextPath}/addOrder?itemNo=${item.itemNo}&memberNo=${loginMember.memberNo}">주문</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

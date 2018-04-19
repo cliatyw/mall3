@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<jsp:include page="../left.jsp"></jsp:include>
 	<form action="${pageContext.request.contextPath}/updateItem" method="post">
 		<input type="hidden" name="itemNo" value="${item.itemNo}">
 		<input type="hidden" name="categoryNo" value="${item.categoryNo}">

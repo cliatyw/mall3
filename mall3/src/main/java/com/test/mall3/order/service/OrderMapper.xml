@@ -5,11 +5,12 @@
  
 <mapper namespace="com.test.mall3.order.service.OrderMapper">
 	<insert id="insertOrder" parameterType="com.test.mall3.order.service.Order">
-		INSERT INTO Order(					
-			
-			
+		INSERT INTO mall.order(
+			member_no, item_no, order_date
 		) VALUES (
-			
+			#{memberNo}
+			,#{itemNo}
+			,NOW()
 		)
 	</insert>
 </mapper>

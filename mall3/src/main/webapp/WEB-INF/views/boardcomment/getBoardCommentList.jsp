@@ -16,13 +16,10 @@
 				$("p").after('<input type="submit" value="수정확인">');
 				$('.update').hide();
 			});
-			$('form').submit(function(){
-				$('#boardNo').text("${board.boardNo}");
-			});
 			$('.commentUpdate').click(function(){
 				$(this).parents('span').find('.commentContent').attr('type','"text"');
 				$(this).parents('span').find('.commentDelete').remove();
-				$(this).parents('span').find('#updateCommentContent').html('<input type="submit" value="수정확인">');
+				$(this).parents('span').find('#updateCommentContent').html('<input type="submit" value="수정확인">');		
 			});
 			$('.commentDelete').click(function(){
 				$(this).parents('span').find('#deleteForm').submit();
@@ -76,49 +73,49 @@
 		</table>
 		<p></p>
 	</form>	
+	<h1>댓글리스트</h1>
+	<c:forEach var="list" items="${list}">
+		<table border="1">
+			<td width="150">
+				<div style="text-align:center">
+					${list.memberId}
+				</div>
+			</td>
+			<td width="550">
+				<div>
+					${list.commentContent}
+				</div>							
+				<span>	
+					<form id="updateForm"action="${pageContext.request.contextPath}/updateBoardComment" method="post">
+						<c:if test="${list.memberId == sessionScope.loginMemberId}">
+							<div>							
+								<input type="button" class="commentUpdate" value="수정">
+								<input type="hidden" value="${list.commentContent}" style="border:1" class="commentContent" name="updateCommentContent" size="50">						
+								<input type="hidden" value="${list.commentNo}" name="commentNo">						
+								<input type="hidden" value="${board.boardNo}" name="boardNo">
+								<input type="hidden" value="${board.memberId}" name="memberId">
+								<input type="hidden" value="${board.boardDate}" name="boardDate">
+								<input type="hidden" value="${board.boardTitle}" name="boardTitle">
+								<input type="hidden" value="${board.boardContent}" name="boardContent">
+								<span id="updateCommentContent"></span>
+								<input type="button" class="commentDelete" value="삭제">				
+							</div>
+						</c:if>
+					 </form>
+					<form id="deleteForm" action="${pageContext.request.contextPath}/deleteBoardComment" method="post">
+						<input type="hidden" value="${list.commentNo}" name="commentNo">
+						<input type="hidden" value="${board.boardNo}" name="boardNo">
+						<input type="hidden" value="${board.memberId}" name="memberId">
+						<input type="hidden" value="${board.boardDate}" name="boardDate">
+						<input type="hidden" value="${board.boardTitle}" name="boardTitle">
+						<input type="hidden" value="${board.boardContent}" name="boardContent">
+					</form>	
+				</span>									
+			</td>
+		</table>						
+	</c:forEach>		
+	<br>
 	<form action="${pageContext.request.contextPath}/getBoardCommentList" method="post">
-		<h1>댓글리스트</h1>
-		<c:forEach var="list" items="${list}">
-			<table border="1">
-				<td width="150">
-					<div style="text-align:center">
-						${list.memberId}
-					</div>
-				</td>
-				<td width="550">
-					<div>
-						${list.commentContent}
-					</div>							
-					<span>	
-						<form action="${pageContext.request.contextPath}/updateBoardComment" method="post">
-							<c:if test="${list.memberId == sessionScope.loginMemberId}">
-								<div>							
-									<input type="button" class="commentUpdate" value="수정">
-									<input type="hidden" value="${list.commentContent}" style="border:1" class="commentContent" name="updateCommentContent" size="50">						
-									<input type="hidden" value="${list.commentNo}" name="commentNo">						
-									<input type="hidden" value="${board.boardNo}" name="boardNo">
-									<input type="hidden" value="${board.memberId}" name="memberId">
-									<input type="hidden" value="${board.boardDate}" name="boardDate">
-									<input type="hidden" value="${board.boardTitle}" name="boardTitle">
-									<input type="hidden" value="${board.boardContent}" name="boardContent">
-									<span id="updateCommentContent"></span>
-									<input type="button" class="commentDelete" value="삭제">				
-								</div>
-							</c:if>
-						</form>
-						<form id="deleteForm" action="${pageContext.request.contextPath}/deleteBoardComment" method="post">
-							<input type="hidden" value="${list.commentNo}" name="commentNo">
-							<input type="hidden" value="${board.boardNo}" name="boardNo">
-							<input type="hidden" value="${board.memberId}" name="memberId">
-							<input type="hidden" value="${board.boardDate}" name="boardDate">
-							<input type="hidden" value="${board.boardTitle}" name="boardTitle">
-							<input type="hidden" value="${board.boardContent}" name="boardContent">
-						</form>	
-					</span>									
-				</td>
-			</table>						
-		</c:forEach>		
-		<br>
 		<table border="1">
 			<td width="150">
 				<div style="text-align:center">
@@ -130,13 +127,15 @@
 					<textarea name="commentContent" rows="4" cols="70"></textarea>
 				</div>
 			</td>
-		</table>
-		<input type="submit" value="댓글등록">
-		<input type="hidden" value="${board.boardNo}" name="boardNo">
-		<input type="hidden" value="${board.memberId}" name="memberId">
-		<input type="hidden" value="${board.boardDate}" name="boardDate">
-		<input type="hidden" value="${board.boardTitle}" name="boardTitle">
-		<input type="hidden" value="${board.boardContent}" name="boardContent">
+			<td>
+				<input type="submit" value="댓글등록">
+				<input type="hidden" value="${board.boardNo}" name="boardNo">
+				<input type="hidden" value="${board.memberId}" name="memberId">
+				<input type="hidden" value="${board.boardDate}" name="boardDate">
+				<input type="hidden" value="${board.boardTitle}" name="boardTitle">
+				<input type="hidden" value="${board.boardContent}" name="boardContent">					
+			</td>
+		</table>		
 	</form>	
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.test.mall3.item.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -21,29 +22,40 @@ import com.test.mall3.item.service.ItemService;
 public class ItemController {
 	@Autowired
 	private ItemService itemservice;
+	@Autowired
+	private CategoryService categoryService;
+	
 	private static final Logger logger = LoggerFactory.getLogger(CategoryController.class);
 	
 	@RequestMapping(value="/updateItem", method=RequestMethod.GET )
 	public String selectItemOne(Model model, Item item) {
+		List<Category> list = categoryService.getCategoryList();
+		model.addAttribute("cateList", list);
 		model.addAttribute("item", itemservice.selectItemOne(item));
 		return "/item/updateItem";
 	}
 	
 	@RequestMapping(value="/updateItem", method=RequestMethod.POST )
-	public String updateItem(Item item) {
+	public String updateItem(Model model, Item item) {
 		itemservice.updateItem(item);
+		List<Category> list = categoryService.getCategoryList();
+		model.addAttribute("cateList", list);
 		return "redirect:/getItemList?categoryNo="+item.getCategoryNo();
 	}
 	
 	@RequestMapping(value="/deleteItem", method=RequestMethod.GET )
-	public String deleteItem(Item item) {
+	public String deleteItem(Model model, Item item) {
 		itemservice.deleteItem(item);
+		List<Category> list = categoryService.getCategoryList();
+		model.addAttribute("cateList", list);
 		return "redirect:/getItemList?categoryNo="+item.getCategoryNo();
 	}
 		
 	@RequestMapping(value="/addItem", method=RequestMethod.GET)
 	public String addItem(Model model, @RequestParam(value="categoryNo") int categoryNo) {
 		model.addAttribute("categoryNo",categoryNo);
+		List<Category> list = categoryService.getCategoryList();
+		model.addAttribute("cateList", list);
 		return "/item/addItem";
 	}
 
@@ -51,22 +63,37 @@ public class ItemController {
 	public String addItem(Model model, Item item, @RequestParam(value="categoryNo") int categoryNo) {
 		model.addAttribute("categoryNo",categoryNo);
 		itemservice.addItem(item);
+		List<Category> list = categoryService.getCategoryList();
+		model.addAttribute("cateList", list);
 		return "redirect:/getItemList?pagePerRow=10";
 	}
 	
 	
 	@RequestMapping(value="/getItemList", method=RequestMethod.GET)
 	public String getItemList(Model model
+									,@RequestParam(defaultValue="") String keyword
+									,@RequestParam(defaultValue="") String pricelist
 									,@RequestParam(value="categoryNo") int categoryNo
 									,@RequestParam(value="currentPage", defaultValue="1") int currentPage
 									,@RequestParam(value="pagePerRow", defaultValue="10", required=true) int pagePerRow) {
+		List<Category> list = categoryService.getCategoryList();
 		
-		Map<String, Object> map = itemservice.getItemList(currentPage,pagePerRow,categoryNo);
+		
+		logger.info(keyword);
+		
+		
+		
+		
+		model.addAttribute("cateList", list);
+		Map<String, Object> map = itemservice.getItemList(currentPage,pagePerRow,categoryNo,keyword,pricelist);
 		model.addAttribute("list", map.get("list"));
 		model.addAttribute("lastPage",map.get("lastPage"));
 		model.addAttribute("currentPage",map.get("currentPage"));
 		model.addAttribute("categoryNo",categoryNo);
 		model.addAttribute("pagePerRow",pagePerRow);
+		model.addAttribute("pricelist",pricelist);
+		model.addAttribute("keyword", keyword); // 검색키워드
+
 		return "/item/getItemList";
 	}
 }

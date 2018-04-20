@@ -9,12 +9,21 @@
 			parameterType="java.util.Map" 
 			resultType="com.test.mall3.item.service.Item">
 		SELECT
-			item_no AS itemNo
-			,category_no AS categoryNo
-			,item_name AS itemName
-			,item_price AS itemPrice
-		FROM item WHERE category_no = #{categoryNo}
-		ORDER BY category_no DESC
+		item_no AS itemNo
+		,category_no AS categoryNo
+		,item_name AS itemName
+		,item_price AS itemPrice
+		FROM item
+		WHERE category_no = #{categoryNo} AND item_name like CONCAT('%','${keyword}','%')
+      	<if test='pricelist ==""'>
+      	ORDER BY category_no DESC
+      	</if>
+      	<if test='pricelist =="low"'>
+      	ORDER BY item_price ASC
+      	</if>
+      	<if test='pricelist =="high"'>
+      	ORDER BY item_price DESC
+      	</if>
 		LIMIT #{beginRow}, #{pagePerRow}
 	</select>
 	

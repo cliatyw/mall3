@@ -16,14 +16,15 @@ public class ItemService {
 	private ItemDao itemdao;
 	private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
 
-	public Map<String, Object> getItemList(int currentPage, int pagePerRow, int categoryNo) {
+	public Map<String, Object> getItemList(int currentPage, int pagePerRow, int categoryNo,String keyword,String pricelist) {
 		//1
-		Map<String, Integer> map = new HashMap<String, Integer>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		//currentPage,pagePerRow --> beginRow 알고리즘 설계
 		int beginRow = (currentPage-1)*pagePerRow;
 		map.put("beginRow", beginRow);
 		map.put("pagePerRow", pagePerRow);
 		map.put("categoryNo", categoryNo);
+		map.put("keyword", keyword);
 		List<Item> list = itemdao.selectItemList(map);
 		//2
 		int total = itemdao.totalCountItem(categoryNo);
@@ -39,6 +40,7 @@ public class ItemService {
 		returnMap.put("list", list);
 		returnMap.put("lastPage", lastPage);
 		returnMap.put("categoryNo", categoryNo);
+		returnMap.put("pricelist", pricelist);
 		return returnMap;
 	}
 	

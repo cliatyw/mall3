@@ -21,9 +21,12 @@
 			});
 			$('.commentUpdate').click(function(){
 				$(this).parents('span').find('.commentContent').attr('type','"text"');
-				$(this).parents('span').find('.commentRemove').remove();
+				$(this).parents('span').find('.commentDelete').remove();
 				$(this).parents('span').find('#updateCommentContent').html('<input type="submit" value="수정확인">');
-			});	
+			});
+			$('.commentDelete').click(function(){
+				$(this).parents('span').find('#deleteForm').submit();
+			});
 		});
 	</script>
 </head>
@@ -34,40 +37,40 @@
 			<tr height = "30">
 			      <td align = "center" width = "125">수정</td>
 			      <td align = "center" width = "125">
-			      <input type="button" class="update" value="수정"> 
+			      	<input type="button" class="update" value="수정"> 
 			      </td>
 			      <td align = "center" width = "125">삭제</td>
 			      <td align = "center" width = "125">
-			      <a href="${pageContext.request.contextPath}/deleteBoard?deleteBoardNo= ${board.boardNo}"><input type="button" value="삭제"></a>
+			      	<a href="${pageContext.request.contextPath}/deleteBoard?deleteBoardNo= ${board.boardNo}"><input type="button" value="삭제"></a>
 			      </td>
 			</tr>
 			<tr height = "30">
 			      <td align = "center" width = "125">순서</td>
 			      <td align = "center" width = "125">
-			      <input type="hidden" value="${board.boardNo}" name="boardNo">
-			      ${board.boardNo}
+			      	<input type="hidden" value="${board.boardNo}" name="boardNo">
+			      	${board.boardNo}
 			      </td>
 			      <td align = "center" width = "125">아이디</td>
 			      <td align = "center" width = "125">
-			      ${board.memberId}
+			      	${board.memberId}
 			      </td>
 			</tr>
 			<tr height = "30">
 			      <td align = "center" width = "250">작성일</td>
 			      <td>
-			      ${board.boardDate}
+			      	${board.boardDate}
 			      </td>
 			</tr>
 			<tr height = "30">
 			      <td align = "center" width = "125">글 제목</td>
 			      <td align = "left" width = "375" colspan = "3">
-			     <input type="text" value="${board.boardTitle}" readonly style="border:0" id="title" name="boardTitle">
+			     	<input type="text" value="${board.boardTitle}" readonly style="border:0" id="title" name="boardTitle">
 			      </td>
 			</tr>
 			<tr>
 			      <td align = "center" width = "125">글 내용</td>
 			      <td align = "left" width = "375" colspan = "3">
-			       <input type="text" value="${board.boardContent}" readonly style="border:0" id="content" name="boardContent">
+			       	<input type="text" value="${board.boardContent}" readonly style="border:0" id="content" name="boardContent">
 			      </td>
 			</tr>
 		</table>
@@ -76,36 +79,44 @@
 	<form action="${pageContext.request.contextPath}/getBoardCommentList" method="post">
 		<h1>댓글리스트</h1>
 		<c:forEach var="list" items="${list}">
-		<table border="1">
-			<td width="150">
-				<div style="text-align:center">
-					${list.memberId}
-				</div>
-			</td>
-			<td width="550">
-				<div>
-					${list.commentContent}
-				</div>							
-				<span>	
-				<c:if test="${list.memberId == sessionScope.loginMemberId}">
-				<div>
-					<form action="${pageContext.request.contextPath}/updateBoardComment" method="post">			
-					<input type="button" class="commentUpdate" value="수정">
-					<input type="hidden" value="${list.commentContent}" style="border:1" class="commentContent" name="updateCommentContent" size="50">						
-					<input type="hidden" value="${list.commentNo}" name="commentNo" size="50">						
-					<input type="hidden" value="${board.boardNo}" name="boardNo">
-					<input type="hidden" value="${board.memberId}" name="memberId">
-					<input type="hidden" value="${board.boardDate}" name="boardDate">
-					<input type="hidden" value="${board.boardTitle}" name="boardTitle">
-					<input type="hidden" value="${board.boardContent}" name="boardContent">
-					<span id="updateCommentContent"></span>
-					</form>
-					<input type="button" class="commentRemove" value="삭제">
-				</span>
-				</div>
-			</c:if>								
-			</td>
-		</table>						
+			<table border="1">
+				<td width="150">
+					<div style="text-align:center">
+						${list.memberId}
+					</div>
+				</td>
+				<td width="550">
+					<div>
+						${list.commentContent}
+					</div>							
+					<span>	
+						<form action="${pageContext.request.contextPath}/updateBoardComment" method="post">
+							<c:if test="${list.memberId == sessionScope.loginMemberId}">
+								<div>							
+									<input type="button" class="commentUpdate" value="수정">
+									<input type="hidden" value="${list.commentContent}" style="border:1" class="commentContent" name="updateCommentContent" size="50">						
+									<input type="hidden" value="${list.commentNo}" name="commentNo">						
+									<input type="hidden" value="${board.boardNo}" name="boardNo">
+									<input type="hidden" value="${board.memberId}" name="memberId">
+									<input type="hidden" value="${board.boardDate}" name="boardDate">
+									<input type="hidden" value="${board.boardTitle}" name="boardTitle">
+									<input type="hidden" value="${board.boardContent}" name="boardContent">
+									<span id="updateCommentContent"></span>
+									<input type="button" class="commentDelete" value="삭제">				
+								</div>
+							</c:if>
+						</form>
+						<form id="deleteForm" action="${pageContext.request.contextPath}/deleteBoardComment" method="post">
+							<input type="hidden" value="${list.commentNo}" name="commentNo">
+							<input type="hidden" value="${board.boardNo}" name="boardNo">
+							<input type="hidden" value="${board.memberId}" name="memberId">
+							<input type="hidden" value="${board.boardDate}" name="boardDate">
+							<input type="hidden" value="${board.boardTitle}" name="boardTitle">
+							<input type="hidden" value="${board.boardContent}" name="boardContent">
+						</form>	
+					</span>									
+				</td>
+			</table>						
 		</c:forEach>		
 		<br>
 		<table border="1">

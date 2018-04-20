@@ -30,4 +30,9 @@ public class BoardCommentService {
 		int row = boardCommentDao.updateBoardComment(boardComment);
 		return row;
 	}
+	/*댓글삭제*/
+	public int deleteBoardComment(int commentNo) {
+		int row = boardCommentDao.deleteBoardComment(commentNo);
+		return row;
+	}
 }

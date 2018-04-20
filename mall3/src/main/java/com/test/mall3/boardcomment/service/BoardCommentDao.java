@@ -37,4 +37,9 @@ public class BoardCommentDao {
 		int row = sqlSession.update(NS+"updateBoardComment", boardComment);
 		return row;
 	}
+	/*댓글삭제*/
+	public int deleteBoardComment(int commentNo) {
+		int row = sqlSession.delete(NS+"deleteBoardComment", commentNo);
+		return row;
+	}
 }

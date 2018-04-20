@@ -61,5 +61,17 @@ public class BoardCommentController {
 		List<BoardComment> list = boardCommentService.selectBoardComment(board.getBoardNo());
 		model.addAttribute("list", list);
 		return "/boardcomment/getBoardCommentList";
-	}	
+	}
+	/*댓글삭제*/
+	@RequestMapping(value="/deleteBoardComment", method=RequestMethod.POST)
+	public String deleteBoardComment(@RequestParam("commentNo") int commentNo,
+									Model model, 
+									Board board) {
+		System.out.println(commentNo+"<--댓글삭제번호");
+		boardCommentService.deleteBoardComment(commentNo);
+		List<BoardComment> list = boardCommentService.selectBoardComment(board.getBoardNo());
+		model.addAttribute("list", list);
+		model.addAttribute("board", board);	
+		return "/boardcomment/getBoardCommentList";
+	}
 }

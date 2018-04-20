@@ -45,7 +45,11 @@
 		UPDATE board_comment SET
 		comment_content = #{commentContent}
 	    WHERE comment_no = #{commentNo}
-	</update>				
+	</update>
+	<delete id="deleteBoardComment"
+			parameterType="Integer">
+		DELETE FROM board_comment WHERE comment_no = #{commentNo}
+	</delete>						
 </mapper>
 
 

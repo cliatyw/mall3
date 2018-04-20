@@ -7,7 +7,6 @@
 	<title>getBoardList.jsp</title>
 </head>
 <body>
-	<center>
 	<h1>게시판리스트</h1>
 		<form action="${pageContext.request.contextPath}/getBoardList?pagePerRow=pagePerRow">
 			<select name="pagePerRow" id="pagePerRow">
@@ -38,6 +37,5 @@
 			<a href="${pageContext.request.contextPath}/getBoardList?currentPage=${start}&pagePerRow=${pagePerRow}">[${start}]</a>
 		</c:forEach><br>
 		<input type="button" value="메인" onclick="window.location.href='${pageContext.request.contextPath}/index'">
-		</center>
 </body>
 </html>

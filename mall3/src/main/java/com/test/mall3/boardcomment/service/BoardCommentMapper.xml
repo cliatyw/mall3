@@ -22,7 +22,7 @@
 		SELECT 
 		comment_no as commentNo
 		,comment_content as commentContent
-			,member_id as memberId
+		,member_id as memberId
 		FROM board_comment
 		WHERE board_no = #{boardNo}
 	</select>

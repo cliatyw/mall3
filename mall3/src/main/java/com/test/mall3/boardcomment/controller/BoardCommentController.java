@@ -51,7 +51,15 @@ public class BoardCommentController {
 	}
 	/*댓글수정*/
 	@RequestMapping(value="/updateBoardComment", method=RequestMethod.POST)
-	public void updateBoardComment(BoardComment boardComment) {
-		System.out.println("댓글수정실행");
-	}
+	public String updateBoardComment(@RequestParam("updateCommentContent") String updateCommentContent,
+								     Model model,
+									 BoardComment boardComment,
+								     Board board) {
+		boardComment.setCommentContent(updateCommentContent);
+		boardCommentService.updateBoardComment(boardComment);
+		model.addAttribute("board", board);	
+		List<BoardComment> list = boardCommentService.selectBoardComment(board.getBoardNo());
+		model.addAttribute("list", list);
+		return "/boardcomment/getBoardCommentList";
+	}	
 }

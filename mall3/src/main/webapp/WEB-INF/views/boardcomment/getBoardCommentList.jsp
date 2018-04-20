@@ -27,8 +27,7 @@
 		});
 	</script>
 </head>
-<body>		
-	<center>
+<body>			
 	<h1>게시판 내용</h1>
 	<form action="${pageContext.request.contextPath}/updateBoardList" method="post">
 		<table border = "2" cellspacing = "0" cellpadding = "0">
@@ -77,28 +76,36 @@
 	<form action="${pageContext.request.contextPath}/getBoardCommentList" method="post">
 		<h1>댓글리스트</h1>
 		<c:forEach var="list" items="${list}">
-			<table border="1">
-				<td width="150">
-					<div style="text-align:center">
-						${list.memberId}
-					</div>
-				</td>
-				<td width="550">
-					<div>
-						${list.commentContent}
-					</div>	
-				<c:if test="${list.memberId == sessionScope.loginMemberId}">						
-					<span>
-						<input type="button" class="commentUpdate" value="수정">
-						<form action="${pageContext.request.contextPath}/updateBoardComment" method="post">
-						<input type="hidden" value="${list.commentContent}" style="border:1" class="commentContent" name="updateCommentContent" size="50">						
-						<span id="updateCommentContent"></span>
-						</form>
-						<input type="button" class="commentRemove" value="삭제">
-					</span>
-				</c:if>								
-				</td>
-			</table>						
+		<table border="1">
+			<td width="150">
+				<div style="text-align:center">
+					${list.memberId}
+				</div>
+			</td>
+			<td width="550">
+				<div>
+					${list.commentContent}
+				</div>							
+				<span>	
+				<c:if test="${list.memberId == sessionScope.loginMemberId}">
+				<div>
+					<form action="${pageContext.request.contextPath}/updateBoardComment" method="post">			
+					<input type="button" class="commentUpdate" value="수정">
+					<input type="hidden" value="${list.commentContent}" style="border:1" class="commentContent" name="updateCommentContent" size="50">						
+					<input type="hidden" value="${list.commentNo}" name="commentNo" size="50">						
+					<input type="hidden" value="${board.boardNo}" name="boardNo">
+					<input type="hidden" value="${board.memberId}" name="memberId">
+					<input type="hidden" value="${board.boardDate}" name="boardDate">
+					<input type="hidden" value="${board.boardTitle}" name="boardTitle">
+					<input type="hidden" value="${board.boardContent}" name="boardContent">
+					<span id="updateCommentContent"></span>
+					</form>
+					<input type="button" class="commentRemove" value="삭제">
+				</span>
+				</div>
+			</c:if>								
+			</td>
+		</table>						
 		</c:forEach>		
 		<br>
 		<table border="1">
@@ -119,7 +126,6 @@
 		<input type="hidden" value="${board.boardDate}" name="boardDate">
 		<input type="hidden" value="${board.boardTitle}" name="boardTitle">
 		<input type="hidden" value="${board.boardContent}" name="boardContent">
-	</form>
-	</center>	
+	</form>	
 </body>
 </html>

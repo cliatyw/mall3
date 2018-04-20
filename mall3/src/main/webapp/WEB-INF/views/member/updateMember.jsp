@@ -16,7 +16,7 @@
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 		<form action="${pageContext.request.contextPath}/updateMember" method = "post">
 			<input type="hidden" name="memberNo" value="${member.memberNo}">
-			<table>
+			<table class="table table-striped">
 				<tr>
 					<td>아이디</td>
 					<td><input type="text" name="memberId" value="${member.memberId}"></td>
@@ -26,7 +26,7 @@
 					<td><input type="text" name="memberPw" value="${member.memberPw}"></td>
 				</tr>
 			</table>
-			<button type="submit">회원 수정 버튼</button>
+			<button type="submit" class="btn btn-default">회원 수정 버튼</button>
 		</form>
 	</div>
 </body>

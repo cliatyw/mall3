@@ -16,14 +16,16 @@
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 		<h1>회원 리스트 </h1>
 		<form action="${pageContext.request.contextPath}/getMemberList" method="get">
-			<select name="pagePerRow">
-				<option value="3">3개씩</option>
-				<option value="5">5개씩</option>
-				<option value="10">10개씩</option>
-			</select>
-			<button type="submit">보기</button>
+			<div class="col-xs-2">
+				<select name="pagePerRow" class="form-control">
+					<option value="3">3개씩</option>
+					<option value="5">5개씩</option>
+					<option value="10">10개씩</option>
+				</select>
+			</div>
+			<button type="submit" class="btn btn-default">보기</button>
 		</form>
-		<table>
+		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th>no</th>

@@ -4,6 +4,21 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="com.test.mall3.order.service.OrderMapper">
+	<delete id="deleteOrder" parameterType="com.test.mall3.order.service.Order">
+		DELETE FROM mall.order WHERE order_no=#{orderNo}
+	</delete>
+	<select id="selectOrderList" parameterType="java.util.Map" resultType="com.test.mall3.order.service.Order">
+		SELECT
+			order_no AS orderNo
+			,member_no AS memberNo
+			,item_no AS itemNo
+			,order_date AS orderDate
+		FROM mall.order
+		where member_no=#{memberNo}
+		and order_date between curdate()+interval-#{previous} day
+		and curdate()+interval 1 day
+		ORDER BY order_date DESC
+	</select>
 	<insert id="insertOrder" parameterType="com.test.mall3.order.service.Order">
 		INSERT INTO mall.order(
 			member_no, item_no, order_date

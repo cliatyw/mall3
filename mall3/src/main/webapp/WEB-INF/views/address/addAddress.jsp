@@ -16,13 +16,13 @@
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 		<form action="${pageContext.request.contextPath}/addAddress" method = "post">
 			<input type="hidden" name="memberNo" value="${memberNo}">
-			<table>
+			<table class="table table-striped">
 				<tr>
 					<td>주소</td>
 					<td><input type="text" name="addressContent"></td>
 				</tr>
 			</table>
-			<button type="submit">주소 추가 버튼</button>
+			<button type="submit" class="btn btn-default">주소 추가 버튼</button>
 		</form>
 	</div>
 </body>

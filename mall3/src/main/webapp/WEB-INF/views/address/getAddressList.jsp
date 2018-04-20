@@ -14,17 +14,19 @@
 		</div>
 	</div>
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-		<h1>회원 리스트 </h1>
+		<h1>주소 리스트 </h1>
 		<form action="${pageContext.request.contextPath}/getAddressList" method="get">
 			<input type="hidden" name="memberNo" value="${memberNo}">
-			<select name="pagePerRow">
-				<option value="3">3개씩</option>
-				<option value="5">5개씩</option>
-				<option value="10">10개씩</option>
-			</select>
-			<button type="submit">보기</button>
+			<div class="col-xs-2">
+				<select name="pagePerRow" class="form-control" placeholder=".col-xs-3">
+					<option value="3">3개씩</option>
+					<option value="5">5개씩</option>
+					<option value="10">10개씩</option>
+				</select>
+			</div>
+			<button type="submit" class="btn btn-default">보기</button>
 		</form>
-		<table>
+		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th>addr no</th>
@@ -46,7 +48,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<button type="button" onclick="location.href='${pageContext.request.contextPath}/addAddress?memberNo=${memberNo}'">주소 추가</button>
+		<button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/addAddress?memberNo=${memberNo}'">주소 추가</button>
 		
 		<c:if test="${currentPage > 1}">
 			<a href="${pageContext.request.contextPath}/getAddressList?currentPage=1&pagePerRow=${pagePerRow}&memberNo=${memberNo}">[처음으로]</a>

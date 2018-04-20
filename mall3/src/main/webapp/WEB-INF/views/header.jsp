@@ -30,6 +30,7 @@
             	<li><a href="${pageContext.request.contextPath}/login">로그인</a></li>
             </c:if>
             <c:if test="${!empty loginMember.memberId}">
+            	<li><a href="${pageContext.request.contextPath}/myInfo">정보보기</a></li>
             	<li><a href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
             	<li><a href="${pageContext.request.contextPath}/getMemberList">회원 목록</a></li>
             	<li><a href="${pageContext.request.contextPath}/getCategoryList">카테고리 목록</a></li>

@@ -58,7 +58,9 @@ public class MemberController {
 	 * 로그아웃 : 세션 종료 하고 index로 리다이렉트
 	 */
 	@RequestMapping(value= "/logout", method=RequestMethod.GET)
-	public String logout(HttpSession session) {
+	public String logout(HttpSession session, Model model) {
+		List<Category> list = categoryService.getCategoryList();
+		model.addAttribute("cateList", list);
 		session.removeAttribute("loginMember");
 		return "redirect:/";
 	}
@@ -72,6 +74,8 @@ public class MemberController {
 	
 	@RequestMapping(value= "/login", method=RequestMethod.POST)
 	public String loging(Model model, Member member, HttpSession session) {
+		List<Category> list = categoryService.getCategoryList();
+		model.addAttribute("cateList", list);
 		Member returnMember = memberService.selectMemberById(member);
 		/*
 		 * 로그인이 실패하면 입력받은 값을 requestMember로 세션에 세팅하여 포워드하여 사용하고

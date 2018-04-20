@@ -48,7 +48,7 @@
 	</div>
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 		<form action="${pageContext.request.contextPath}/addMember" id="addMemberForm" method = "post">
-			<table>
+			<table class="table table-striped">
 				<tr>
 					<td>아이디</td>
 					<td>
@@ -71,7 +71,7 @@
 					</td>
 				</tr>
 			</table>
-			<button id="btn" type="button">회원가입버튼</button>
+			<button id="btn" type="button" class="btn btn-default">회원가입버튼</button>
 		</form>
 	</div>
 </body>

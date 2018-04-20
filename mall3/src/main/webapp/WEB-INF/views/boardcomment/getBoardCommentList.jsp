@@ -38,7 +38,7 @@
 			      </td>
 			      <td align = "center" width = "125">삭제</td>
 			      <td align = "center" width = "125">
-			      	<a href="${pageContext.request.contextPath}/deleteBoard?deleteBoardNo= ${board.boardNo}"><input type="button" value="삭제"></a>
+			      	<a href="${pageContext.request.contextPath}/deleteBoard?deleteBoardNo= ${board.boardNo}">삭제</a>
 			      </td>
 			</tr>
 			<tr height = "30">
@@ -115,7 +115,7 @@
 		</table>						
 	</c:forEach>		
 	<br>
-	<form action="${pageContext.request.contextPath}/getBoardCommentList" method="post">
+	<form id="insertForm" action="${pageContext.request.contextPath}/getBoardCommentList" method="post">
 		<table border="1">
 			<td width="150">
 				<div style="text-align:center">

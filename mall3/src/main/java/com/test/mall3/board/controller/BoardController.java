@@ -46,7 +46,9 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/deleteBoard", method=RequestMethod.GET)
-	public String deleteBoard(@RequestParam(value="deleteBoardNo",defaultValue="5") int deleteBoardNo) {
+	public String deleteBoard(@RequestParam("deleteBoardNo") int deleteBoardNo) {
+		System.out.println(deleteBoardNo+"<--deleteBoardNo");
+		boardService.foreignkeyBoard();
 		boardService.deleteBoard(deleteBoardNo);
 		return "redirect:/getBoardList";
 	}

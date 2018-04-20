@@ -46,4 +46,9 @@ public class BoardDao {
 	public List<Board> selectBoard1(int boardNo) {
 		return sqlSession.selectList(NS+"selectBoard1", boardNo);
 	}
+	/*foreignkey board_no 해제*/
+	public int foreignkeyBoard() {
+		int row = sqlSession.update(NS+"foreignkeyBoard");
+		return row;
+	}
 }

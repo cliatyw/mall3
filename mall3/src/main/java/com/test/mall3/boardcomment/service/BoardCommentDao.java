@@ -1,6 +1,7 @@
 package com.test.mall3.boardcomment.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -25,8 +26,8 @@ public class BoardCommentDao {
 		return row;
 	}
 	
-	public List<BoardComment> selectBoardComment(int boardNo){
-		return sqlSession.selectList(NS+"selectBoardComment",boardNo);
+	public List<BoardComment> selectBoardComment(Map<String, Object> map){
+		return sqlSession.selectList(NS+"selectBoardComment",map);
 	}
 	/*댓글 수정,삭제시 memberId확인*/
 	public List<BoardComment> selectBoardCommentMemberId(){
@@ -41,5 +42,9 @@ public class BoardCommentDao {
 	public int deleteBoardComment(int commentNo) {
 		int row = sqlSession.delete(NS+"deleteBoardComment", commentNo);
 		return row;
+	}
+	/*총 댓글수*/
+	public int totalBoardComment() {
+		return sqlSession.selectOne(NS+"totalBoardComment");
 	}
 }

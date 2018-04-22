@@ -38,7 +38,7 @@
 			      </td>
 			      <td align = "center" width = "125">삭제</td>
 			      <td align = "center" width = "125">
-			      	<a href="${pageContext.request.contextPath}/deleteBoard?deleteBoardNo= ${board.boardNo}">삭제</a>
+			      	<a href="${pageContext.request.contextPath}/deleteBoard?deleteBoardNo= ${board.boardNo}"><input type="button" value="삭제"></a>
 			      </td>
 			</tr>
 			<tr height = "30">
@@ -112,30 +112,36 @@
 					</form>	
 				</span>									
 			</td>
-		</table>						
-	</c:forEach>		
+		</table>					
+	</c:forEach>
+	<c:forEach var="start" begin="1" end="${lastPage}">
+			<a href="${pageContext.request.contextPath}/getBoardCommentList?currentPage=${start}
+			&boardNo=${board.boardNo}&memberId=${board.memberId}&boardDate=${board.boardDate}&boardTitle=${board.boardTitle}&boardContent=${board.boardContent}">[${start}]</a>
+	</c:forEach><br>		
 	<br>
 	<form id="insertForm" action="${pageContext.request.contextPath}/getBoardCommentList" method="post">
-		<table border="1">
-			<td width="150">
-				<div style="text-align:center">
-					${sessionScope.loginMemberId}
-				</div>
-			</td>
-			<td width="550">
-				<div>
-					<textarea name="commentContent" rows="4" cols="70"></textarea>
-				</div>
-			</td>
-			<td>
-				<input type="submit" value="댓글등록">
-				<input type="hidden" value="${board.boardNo}" name="boardNo">
-				<input type="hidden" value="${board.memberId}" name="memberId">
-				<input type="hidden" value="${board.boardDate}" name="boardDate">
-				<input type="hidden" value="${board.boardTitle}" name="boardTitle">
-				<input type="hidden" value="${board.boardContent}" name="boardContent">					
-			</td>
-		</table>		
+		<c:if test="${sessionScope.loginMemberId != null}">
+			<table border="1">
+				<td width="150">
+					<div style="text-align:center">
+						${sessionScope.loginMemberId}
+					</div>
+				</td>
+				<td width="550">
+					<div>
+						<textarea name="commentContent" rows="4" cols="70"></textarea>
+					</div>
+				</td>
+				<td>
+					<input type="submit" value="댓글등록">
+					<input type="hidden" value="${board.boardNo}" name="boardNo">
+					<input type="hidden" value="${board.memberId}" name="memberId">
+					<input type="hidden" value="${board.boardDate}" name="boardDate">
+					<input type="hidden" value="${board.boardTitle}" name="boardTitle">
+					<input type="hidden" value="${board.boardContent}" name="boardContent">					
+				</td>
+			</table>
+		</c:if>		
 	</form>	
 </body>
 </html>

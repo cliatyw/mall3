@@ -51,4 +51,5 @@ public class BoardDao {
 		int row = sqlSession.update(NS+"foreignkeyBoard");
 		return row;
 	}
+	
 }

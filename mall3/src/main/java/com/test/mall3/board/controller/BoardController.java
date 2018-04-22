@@ -61,4 +61,5 @@ public class BoardController {
 		model.addAttribute("list", list);
 		return "/boardcomment/updateBoardCommentList";
 	}
+	
 }

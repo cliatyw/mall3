@@ -2,6 +2,7 @@ package com.test.mall3.boardcomment.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -24,53 +25,62 @@ public class BoardCommentController {
 	
 	@Autowired
 	private BoardCommentService boardCommentService;
-	/*게시판, 댓글목록*/
+	/*게시판, 댓글목록(페이징)*/
 	@RequestMapping(value="/getBoardCommentList", method=RequestMethod.GET)
-	public String getBoardCommentList(Model model,Board board) {
+	public String getBoardCommentList(Model model,Board board,
+									@RequestParam(value="currentPage",defaultValue="1")int currentPage) {
 		model.addAttribute("board", board);
-		List<BoardComment> list = boardCommentService.selectBoardComment(board.getBoardNo());
-		model.addAttribute("list", list);
+		int boardNo = board.getBoardNo();
+		Map<String, Object> map = boardCommentService.getBoardCommentList(currentPage, boardNo);
+		model.addAttribute("list", map.get("list"));
+		model.addAttribute("lastPage", map.get("lastPage"));
 		List<BoardComment> list2 = boardCommentService.selectBoardCommentMemberId();
-		System.out.println(list2);
 		model.addAttribute("memberId", list2);
 		return "/boardcomment/getBoardCommentList";
 	}
 	
 	/*댓글등록*/
 	@RequestMapping(value="/getBoardCommentList", method=RequestMethod.POST)
-	public String insertBoardCommentList(Model model,HttpSession session,BoardComment boardComment,Board board) {
+	public String insertBoardCommentList(Model model,
+										@RequestParam(value="currentPage",defaultValue="1")int currentPage,
+										HttpSession session,BoardComment boardComment,Board board) {
 		String memberId = (String) session.getAttribute("loginMemberId");
 		boardComment.setMemberId(memberId);
 		model.addAttribute("board", board);	
 		boardCommentService.insertrBoardComment(boardComment);
-		List<BoardComment> list = boardCommentService.selectBoardComment(boardComment.getBoardNo());
-		model.addAttribute("list", list);	
+		int boardNo= board.getBoardNo();
+		Map<String, Object> map = boardCommentService.getBoardCommentList(currentPage,boardNo);
+		model.addAttribute("list", map.get("list"));
 		List<BoardComment> list2 = boardCommentService.selectBoardCommentMemberId();
 		model.addAttribute("memberId", list2);
 		return "/boardcomment/getBoardCommentList";
 	}
 	/*댓글수정*/
 	@RequestMapping(value="/updateBoardComment", method=RequestMethod.POST)
-	public String updateBoardComment(@RequestParam("updateCommentContent") String updateCommentContent,
+	public String updateBoardComment(@RequestParam(value="currentPage",defaultValue="1")int currentPage,
+									@RequestParam("updateCommentContent") String updateCommentContent,
 								     Model model,
 									 BoardComment boardComment,
 								     Board board) {
 		boardComment.setCommentContent(updateCommentContent);
 		boardCommentService.updateBoardComment(boardComment);
 		model.addAttribute("board", board);	
-		List<BoardComment> list = boardCommentService.selectBoardComment(board.getBoardNo());
-		model.addAttribute("list", list);
+		int boardNo= board.getBoardNo();
+		Map<String, Object> map = boardCommentService.getBoardCommentList(currentPage,boardNo);
+		model.addAttribute("list", map.get("list"));
 		return "/boardcomment/getBoardCommentList";
 	}
 	/*댓글삭제*/
 	@RequestMapping(value="/deleteBoardComment", method=RequestMethod.POST)
-	public String deleteBoardComment(@RequestParam("commentNo") int commentNo,
+	public String deleteBoardComment(@RequestParam(value="currentPage",defaultValue="1")int currentPage,
+									@RequestParam("commentNo") int commentNo,
 									Model model, 
 									Board board) {
 		System.out.println(commentNo+"<--댓글삭제번호");
 		boardCommentService.deleteBoardComment(commentNo);
-		List<BoardComment> list = boardCommentService.selectBoardComment(board.getBoardNo());
-		model.addAttribute("list", list);
+		int boardNo= board.getBoardNo();
+		Map<String, Object> map = boardCommentService.getBoardCommentList(currentPage,boardNo);
+		model.addAttribute("list", map.get("list"));
 		model.addAttribute("board", board);	
 		return "/boardcomment/getBoardCommentList";
 	}

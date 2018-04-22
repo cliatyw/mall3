@@ -17,7 +17,7 @@
 		)
 	</insert>
 	<select id="selectBoardComment"
-			parameterType="Integer"
+			parameterType="java.util.Map"
 			resultType="com.test.mall3.boardcomment.service.BoardComment">
 		SELECT 
 		comment_no as commentNo
@@ -25,6 +25,8 @@
 		,member_id as memberId
 		FROM board_comment
 		WHERE board_no = #{boardNo}
+		ORDER BY board_no DESC
+		LIMIT #{beginRow},10
 	</select>
 	<select id="selectBoardCommentList"
 			resultType="com.test.mall3.board.service.Board">
@@ -40,6 +42,10 @@
 		SELECT DISTINCT member_id as memberId
 		FROM board_comment	
 	</select>
+	<select id="totalBoardComment"
+			resultType="Integer">
+		SELECT COUNT(*) FROM board_comment
+	</select>		
 	<update id="updateBoardComment"
 			parameterType="com.test.mall3.boardcomment.service.BoardComment">
 		UPDATE board_comment SET
